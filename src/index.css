@@ -1,0 +1,76 @@
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --text-color--aliceblue: aliceblue;
+  --text-color--dark: #1e1e1e;
+  --bg-footer: #1e1e1e;
+  --grade-color: crimson;
+  --rank-color: #2D4789;
+  --primary-color: #BEDEB1;
+  --notice-holder-color: #eae6e6;
+  --gap-xm: 0.25em;
+  --gap-sm: 0.5em;
+  --gap-md: 0.75em;
+  --gap-lg: 1em;
+  --border-radius-sm: 4px;
+  --light-border: rgba(0, 0, 0, 0.3);
+}
+
+#root {
+  min-height: 100vh;
+  width: 100%;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+li{
+  list-style: none;
+}
+hr {
+  height: 1px;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #535bf2;
+}
+
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+
+button:hover {
+  border-color: #646cff;
+}
+
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
