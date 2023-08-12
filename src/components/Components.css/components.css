@@ -107,6 +107,7 @@
 
 /* Footer */
 .footer{
+    margin-top: auto;
     height: 6vh;
     width: 100%;
     display: flex;

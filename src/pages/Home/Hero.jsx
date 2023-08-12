@@ -1,19 +1,10 @@
 import React from 'react'
 import {AiTwotoneNotification} from 'react-icons/ai'
 import { Link } from 'react-router-dom'
-import Slider from "react-slick";
+import HeroSlider from './HeroSlider'
+import Test from '../test/test'
 
 const Hero = () => {
-
-    const settings = {
-        dots: true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 1000,
-      };
 
   return (
     <div className='hero'>
@@ -56,33 +47,13 @@ const Hero = () => {
                     </div>
                 </div>
                 <div className="archived-notice">
-                    <span>View Archived Notice</span> | <span>View sports Notice</span>
+                    <Link>View Archived Notice</Link> | <Link>View sports Notice</Link>
                 </div>
             </div>
         </div>
         <div className="hero-right">
-            <div className="slider">
-            <Slider {...settings}>
-            <div>
-            <h3>SLIDE 1</h3>
-            </div>
-            <div>
-            <h3>SLIDE 2</h3>
-            </div>
-            <div>
-            <h3>SLIDE 3</h3>
-            </div>
-            <div>
-            <h3>SLIDE 4</h3>
-            </div>
-            <div>
-            <h3>SLIDE 5</h3>
-            </div>
-            <div>
-            <h3>SLIDE 6</h3>
-            </div>
-        </Slider>
-            </div>
+            <HeroSlider/>
+            {/* <Test/> */}
         </div>
     </div>
   )
