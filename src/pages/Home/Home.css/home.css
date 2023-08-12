@@ -3,13 +3,15 @@
     width: inherit;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
 }
 
 .hero{
+    overflow: hidden;
     width: 100%;
     padding-inline: 4em;
     display: grid;
-    grid-template-columns: 32em 1fr;
+    grid-template-columns: 32em 55rem;
     grid-auto-rows: 58vh;
     gap: var(--gap-lg);
 }
@@ -109,6 +111,6 @@
     overflow: hidden;
 }
 
-.slick-dots{
-    bottom: 176px;
+.slider{
+    height: 100%;
 }
