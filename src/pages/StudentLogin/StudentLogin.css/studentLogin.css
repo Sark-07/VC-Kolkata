@@ -85,7 +85,7 @@ label{
 .sign-in-email,
 .sign-in-password,
 .sign-in-captcha{
-    padding: 1em 0.5em;
+    padding: 1em;
     border: 0.1px solid rgba(0, 0, 0, 0.4);
     outline: none;
     border-radius: 5px;
@@ -103,7 +103,7 @@ label{
 }
 
 ::placeholder {
-    padding-left: 0.5em;
+    padding-left: 0.25em;
     opacity: 0.8;
     color: rgba(0, 0, 0, 1) !important;
 }
