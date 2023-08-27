@@ -1,4 +1,4 @@
-label{
+label {
     font-size: 0.9rem;
 }
 
@@ -42,12 +42,13 @@ label{
     justify-content: center;
     position: absolute;
 }
-.logo > svg {
+
+.logo>svg {
     width: 5rem;
     height: 5rem;
 }
 
-.logo > h1{
+.logo>h1 {
     font-size: 2.2rem;
     font-weight: 900;
 }
@@ -76,7 +77,7 @@ label{
 }
 
 .email,
-.DOB,
+.password,
 .captcha {
     display: flex;
     flex-direction: column;
@@ -85,8 +86,8 @@ label{
 }
 
 .sign-in-email,
-.sign-in-DOB,
-.sign-in-captcha{
+.sign-in-password,
+.sign-in-captcha {
     padding: 1em;
     border: 0.1px solid rgba(0, 0, 0, 0.4);
     outline: none;
@@ -95,13 +96,22 @@ label{
     background-color: rgba(255, 255, 255, 0.6);
 }
 
+.password>.password-eye {
+    position: absolute;
+    right: 1em;
+    top: 1.5em;
+    font-size: 1.5rem;
+    display: none;
+    cursor: pointer;
+}
+
 ::placeholder {
     padding-left: 0.15em;
     opacity: 0.8;
     color: rgba(0, 0, 0, 1) !important;
 }
 
-.remember-forget-DOB {
+.remember-forget-password {
     font-size: 0.8rem;
     display: flex;
     align-items: center;
@@ -115,8 +125,6 @@ label{
 }
 
 .login-btn {
-    
+
     background-color: var(--primary-color);
 }
-
-

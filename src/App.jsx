@@ -4,6 +4,10 @@ import './index.css'
 import Home from './pages/Home/Home'
 import Test from './pages/test/test'
 import StudentLogin from './pages/StudentLogin/StudentLogin'
+import PageNotFound from './components/PageNotFound'
+import TeacherLogin from './pages/TeacherLogin/TeacherLogin'
+import TeacherDashboard from './pages/TeacherDashboard/TeacherDashboard'
+import StudentDashboard from './pages/StuddntDashboard/StudentDashboard'
 
 const App = () => {
   return (
@@ -12,6 +16,10 @@ const App = () => {
     <Routes>
       <Route path='/' index element={<Home/>} />
       <Route path='/student-login' index element={<StudentLogin/>} />
+      <Route path='/teacher-login' index element={<TeacherLogin/>} />
+      <Route path='/teacher-dashboard' index element={<TeacherDashboard/>} />
+      <Route path='/student-dashboard' index element={<StudentDashboard/>} />
+      <Route path='*' index element={<PageNotFound/>} />
       <Route path='/test' index element={<Test/>} />
     </Routes>
     </BrowserRouter>

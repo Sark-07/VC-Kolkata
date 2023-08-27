@@ -1,18 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import './StudentLogin.css/studentLogin.css';
-import { ReactComponent as Logo } from '../../assets/svg/logo.svg';
-import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha} from 'react-simple-captcha';
-import { validateEmail } from '../../utils/validateEmail';
+import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
+import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai';
 import toast from 'react-hot-toast'
+import { ReactComponent as Logo } from '../../assets/svg/logo.svg';
+import { validateEmail } from '../../utils/validateEmail';
+import './TeacherLogin.css/teacherLogin.css';
+import axios from 'axios';
 
-
-const StudentLogin = () => {
+const TeacherLogin = () => {
   const [email, setEmail] = useState('');
-  const [dob, setDob] = useState('');
+  const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [validEmail, setValidEmail] = useState(false);
+
   useEffect(() => {
     loadCaptchaEnginge(6);
-  });
+  }, []);
 
   const url = 'http://localhost:3000/VC/api/auth/signin';
   const handleSubmit = async (e) => {
@@ -24,7 +27,7 @@ const StudentLogin = () => {
       } else {
         const payload = {
           email: email,
-          DOB: dob,
+          password: password,
         };
 
         const { data } = await axios.post(url, payload);
@@ -53,7 +56,7 @@ const StudentLogin = () => {
           <h1>Vivekananda College</h1>
         </div>
         <div className='center'>
-          <h1 className='welcome-text'>Student Login</h1>
+          <h1 className='welcome-text'>Teacher Login</h1>
 
           <form action='' onSubmit={(e) => handleSubmit(e)}>
             <div className='email'>
@@ -68,13 +71,24 @@ const StudentLogin = () => {
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
-            <div className='DOB'>
-              <label htmlFor='DOB'>DOB</label>
+            <div className='password'>
+              <label htmlFor='password'>password</label>
               <input
-                className='sign-in-DOB'
-                type='date'
-                placeholder='Enter your DOB'
+                className='sign-in-password'
+                type={showPassword ? 'text' : 'password'}
+                placeholder='Enter your password'
                 required
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <AiOutlineEyeInvisible
+                onClick={() => setShowPassword(!showPassword)}
+                className='password-eye'
+                style={password && !showPassword && { display: 'block' }}
+              />
+              <AiOutlineEye
+                onClick={() => setShowPassword(!showPassword)}
+                className='password-eye'
+                style={password && showPassword && { display: 'block' }}
               />
             </div>
             <div className='captcha'>
@@ -84,14 +98,17 @@ const StudentLogin = () => {
                 type='text'
                 placeholder='Enter captcha'
                 required
-                onChange={(e) => setDob(e.target.value)}
+                onChange={(e) => setPassword(e.target.value)}
               />
             </div>
-            <div className='remember-forget-DOB'>
+            <div className='remember-forget-password'>
               <div className='remember-me'>
                 <input type='checkbox' name='' id='' />
                 <label htmlFor='remember me'>Remember me</label>
               </div>
+              <span>
+                <a href='#'>Forget Password?</a>
+              </span>
             </div>
             <LoadCanvasTemplate />
             <button className='login-btn'>Sign In</button>
@@ -103,4 +120,4 @@ const StudentLogin = () => {
   );
 };
 
-export default StudentLogin;
+export default TeacherLogin;
