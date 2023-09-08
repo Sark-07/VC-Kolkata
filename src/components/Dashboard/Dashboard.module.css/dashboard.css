@@ -1,0 +1,169 @@
+.dashboard{
+    background-color: aliceblue;
+    display: grid;
+    grid-template-columns: 16rem 1fr;
+    grid-template-rows: min(100vh);
+}
+
+.dashboard-left{
+    background-color: #1c2536;
+}
+
+/* left-container head */
+
+.Dashboard-left-title{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    border-bottom: 0.5px solid rgba(255, 255, 255, 0.1);
+    height: fit-content;
+    padding-inline: 1em;
+    padding-block: 0.25em 1em;
+}
+.dashboard-logo{
+    /* padding: 0 0.5em; */
+    font-size: 2.35rem;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
+    color: aliceblue;
+}
+.dashboard-logo > h6{
+    font-size: 2rem;
+    text-align: center;
+}
+.logo-icon{
+    width: 5rem;
+    margin-bottom: -0.25em;
+}
+/* Items */
+
+
+.dashboard-items-container{
+    width: 100%;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5em;
+    height: max-content;
+}
+
+.dashboard-items-container > li{
+    width: 100%;
+    color: #9da4ae;
+    padding: 0.5em 1em;
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.active-bg{
+    background-color: rgba(255, 255, 255, 0.04);
+}
+.dashboard-items-container > li:hover{
+    color: aliceblue;
+    background-color: rgba(255, 255, 255, 0.04);
+}
+
+.dashboard-items-container > li > svg{
+    font-size: 1.2rem;
+}
+.dashboard-items-container > li:hover svg{
+    color: #6366f1;
+    font: 2rem;
+}
+
+
+/* Dashboard right */
+
+.dashboard-right-header{
+    background-color: rgba(221, 228, 251, 0.2);
+    display: flex;
+    height: 8vh;
+    justify-content: space-between;
+    align-items: center;
+    padding-inline: 2em;
+    border-bottom: 1px solid var(--light-border);
+}
+
+.notificatin-DP{
+    display: flex;
+    gap: 1em;
+    align-items: center;
+}
+
+.bell{
+    margin-top: 8px;
+}
+.DP{
+    width: 2.5rem;
+    height: 2.5rem;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+    transition: scale 200ms ease;
+}
+
+.DP:hover{
+    scale: 1.05;
+}
+.dashboard-right-header svg{
+    font-size: 1.5rem;
+    color: #6366f1;
+    cursor: pointer;
+}
+
+
+/* Teaching Plan */
+
+.common{
+    width: 100%;
+    padding: 0 2em;
+}
+.common h1{
+    padding-block: 0.25em;
+    border-bottom: 0.5px solid var(--light-border);
+}
+.common-form{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5em;
+    padding-block: 1em;
+    border-bottom: 0.5px solid var(--light-border);
+}
+.common-form label{
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+.common-form select{
+    padding: 0.75em 1em;
+    border: 0.5px solid var(--light-border);
+    border-radius: 4px;
+    outline: none;
+}
+
+.session,
+.semester,
+.course-type,
+.department{
+    display: flex;
+    align-items: center;
+    gap: 0.75em;
+}
+
+.common button{
+    background-color: var(--primary-color);
+    font-size: 0.9rem;
+}
+
+/* Teaching Plan */
+

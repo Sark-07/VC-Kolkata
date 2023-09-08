@@ -8,6 +8,7 @@ import PageNotFound from './components/PageNotFound'
 import TeacherLogin from './pages/TeacherLogin/TeacherLogin'
 import TeacherDashboard from './pages/TeacherDashboard/TeacherDashboard'
 import StudentDashboard from './pages/StuddntDashboard/StudentDashboard'
+import { Toaster } from 'react-hot-toast'
 
 const App = () => {
   return (
@@ -23,6 +24,7 @@ const App = () => {
       <Route path='/test' index element={<Test/>} />
     </Routes>
     </BrowserRouter>
+    <Toaster/>
     </>
   )
 }

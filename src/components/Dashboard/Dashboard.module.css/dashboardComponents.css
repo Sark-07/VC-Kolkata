@@ -1,0 +1,27 @@
+.common table, th, td {
+    border: 1px solid var(--light-border);
+    text-align: center;
+}
+.common th, td{
+    padding-block: 0.5em;
+}
+.common td{
+    font-size: 0.9rem;
+}
+.common table{
+    border-collapse: collapse;
+    margin-top: 2em;
+    width: 100%;
+}
+
+.common table .actions{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25em;
+    justify-content: center;
+    align-items: center;
+}
+
+.common table button{
+    font-size: 0.8rem;
+}
