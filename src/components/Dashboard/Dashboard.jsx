@@ -9,6 +9,7 @@ import QuestionBank from './QuestionBank'
 import VideoLesson from './VideoLesson'
 import PPTClass from './PPTClass'
 import InstructionMaterial from './InstructionMaterial'
+import StudentList from './StudentList'
 
 const Dashboard = () => {
   return (
@@ -19,12 +20,13 @@ const Dashboard = () => {
         </div>
         <div className="dashboard-right">
           <DashboardRightHeader/>
-          <TeachingPlan/>
+          {/* <TeachingPlan/> */}
           {/* <QuestionBank/> */}
           {/* <UniversityQuestion/> */}
           {/* <VideoLesson/>
           <PPTClass/> */}
           {/* <InstructionMaterial/> */}
+          <StudentList/>
         </div>
     </div>
   )

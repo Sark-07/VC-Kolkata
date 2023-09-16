@@ -1,9 +1,9 @@
 import React from 'react'
-import TeachingPlan from '../../components/Dashboard/TeachingPlan'
+import StudentList from '../../components/Dashboard/StudentList'
 
 const Test = () => {
   return (
-   <TeachingPlan/>
+   <StudentList/>
    
   )
 }
