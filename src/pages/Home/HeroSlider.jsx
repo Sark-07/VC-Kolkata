@@ -4,7 +4,6 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const HeroSlider = () => {
-
     const settings = {
         dots: true,
         infinite: true,

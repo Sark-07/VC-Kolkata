@@ -7,7 +7,7 @@ const UniversityQuestion = () => {
         <h1>University Question</h1>
         <form className='university-question-form common-form'>
             <div className="session">
-            <label htmlFor="Session">Sessions<sup>*</sup></label>
+            <label htmlFor="Session">Session<sup>*</sup></label>
             <select name="session" required>
 			                <option value="">Select Session</option>
                             <option value="2014-15">2014-15</option>

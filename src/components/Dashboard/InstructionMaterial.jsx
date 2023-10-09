@@ -37,15 +37,15 @@ const InstructionMaterial = () => {
           </div>
           <button className='form-submit'>Submit</button>
         </form>
-        <table class='table table-bordered'>
+        <table>
           <thead>
             <tr>
               <th style={{ width: '58px' }}>Sl&nbsp;No</th>
               <th>Date</th>
               <th>Paper Name</th>
               <th>Topic Name</th>
-              <th style={{ width: '110p' }}>View File</th>
-              <th style={{ width: '200p' }}>Action</th>
+              <th>View File</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -57,7 +57,7 @@ const InstructionMaterial = () => {
               <td>
                 <a
                   href='https://www.eshikshak.behalacollege.in/uploads/instructional_material/20211128041637676221.pdf'
-                  class='btn btn-primary btn-xs'
+            
                   
                 >
                   Click

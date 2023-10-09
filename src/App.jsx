@@ -9,8 +9,8 @@ import TeacherLogin from './pages/TeacherLogin/TeacherLogin'
 import TeacherDashboard from './pages/TeacherDashboard/TeacherDashboard'
 import StudentDashboard from './pages/StuddntDashboard/StudentDashboard'
 import { Toaster } from 'react-hot-toast'
-
 const App = () => {
+  
   return (
     <>
     <BrowserRouter>
@@ -18,7 +18,8 @@ const App = () => {
       <Route path='/' index element={<Home/>} />
       <Route path='/student-login' index element={<StudentLogin/>} />
       <Route path='/teacher-login' index element={<TeacherLogin/>} />
-      <Route path='/teacher-dashboard' index element={<TeacherDashboard/>} />
+      <Route path='/teacher-dashboard' index element={<TeacherDashboard index={0}/>} />
+      <Route path='/teacher-dashboard/ppt-class' index element={<TeacherDashboard index={7}/>} />
       <Route path='/student-dashboard' index element={<StudentDashboard/>} />
       <Route path='*' index element={<PageNotFound/>} />
       <Route path='/test' index element={<Test/>} />

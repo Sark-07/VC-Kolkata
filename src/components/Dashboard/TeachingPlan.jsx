@@ -1,14 +1,25 @@
 import React from 'react';
 
 const TeachingPlan = () => {
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+
+    try {
+      
+    } catch (error) {
+      
+    }
+  }
+
   return (
     <>
       <div className='teaching-plan common'>
         <h1>Teaching Plan</h1>
-        <form className='teaching-plan-form common-form'>
+        <form className='teaching-plan-form common-form' onSubmit={(e) => handleSubmit(e)}>
           <div className='session'>
             <label htmlFor='Session'>
-              Sessions<sup>*</sup>
+              Session<sup>*</sup>
             </label>
             <select name='session' required>
               <option value=''>Select Session</option>

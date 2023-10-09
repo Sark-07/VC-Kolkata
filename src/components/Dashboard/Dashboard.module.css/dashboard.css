@@ -9,6 +9,7 @@
     background-color: #1c2536;
 }
 
+
 /* left-container head */
 
 .Dashboard-left-title{
@@ -22,6 +23,7 @@
     padding-inline: 1em;
     padding-block: 0.25em 1em;
 }
+
 .dashboard-logo{
     /* padding: 0 0.5em; */
     font-size: 2.35rem;
@@ -39,9 +41,8 @@
     width: 5rem;
     margin-bottom: -0.25em;
 }
+
 /* Items */
-
-
 .dashboard-items-container{
     width: 100%;
     padding: 1em;
@@ -54,13 +55,17 @@
 
 .dashboard-items-container > li{
     width: 100%;
-    color: #9da4ae;
+    border-radius: 8px;
+}
+.dashboard-items-container > li > a{
     padding: 0.5em 1em;
+    cursor: pointer;
+    text-decoration: none;
+    color: #9da4ae;
+    width: 100%;
     display: flex;
     align-items: center;
     gap: 1em;
-    border-radius: 8px;
-    cursor: pointer;
 }
 
 .active-bg{
@@ -171,5 +176,20 @@
     font-size: 0.9rem;
 }
 
-/* Teaching Plan */
-
+/* Overview */
+/* .Overview{
+    width: 100%;
+    padding: 1em 2em;
+} */
+.stats{
+    width: 100%;
+    height: fit-content;
+    padding: 1em 2em;
+    display: grid;
+    gap: 1.5em;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 20rem;
+}
+.stat-elements{
+    width: 100%;
+}

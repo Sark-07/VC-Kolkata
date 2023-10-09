@@ -2,7 +2,7 @@ import React from 'react'
 import {AiTwotoneNotification} from 'react-icons/ai'
 import { Link } from 'react-router-dom'
 import HeroSlider from './HeroSlider'
-import Test from '../test/test'
+// import Test from '../test/test'
 
 const Hero = () => {
 

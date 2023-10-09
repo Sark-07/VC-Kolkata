@@ -5,9 +5,9 @@ const PPTClass = () => {
     <>
     <div className="PPT-class common">
         <h1>PPT Class</h1>
-        <form className='PPT-class-form common-form'>
+        <form className='PPT-class-form common-form' action='#'>
             <div className="session">
-            <label htmlFor="Session">Sessions<sup>*</sup></label>
+            <label htmlFor="Session">Session<sup>*</sup></label>
             <select name="session" required>
 			                <option value="">Select Session</option>
                             <option value="2014-15">2014-15</option>
