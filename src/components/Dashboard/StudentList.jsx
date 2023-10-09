@@ -2,11 +2,21 @@ import React from 'react';
 import './Dashboard.module.css/dashboardComponents.css'
 
 const StudentList = () => {
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    
+    try {
+      
+    } catch (error) {
+      
+    }
+  }
   return (
     <>
       <div className='student-list common'>
         <h1>Student List</h1>
-        <form className='student-list-form common-form'>
+        <form className='student-list-form common-form' onSubmit={(e) => handleSubmit(e)}>
             <div className="entries">
                 <input type="number" placeholder='1'/>
                 <button>Go</button>
