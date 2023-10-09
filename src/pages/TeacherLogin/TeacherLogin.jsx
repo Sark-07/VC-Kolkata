@@ -23,8 +23,11 @@ const TeacherLogin = () => {
     e.preventDefault();
 
     try {
-      if (validateEmail(email) == null) {
+      if (validateEmail(email) === false) {
         setValidEmail(true);
+        setTimeout(() => {
+          setValidEmail(false);
+        }, 3000);
       } else if (validateCaptcha(captcha) == false) {
         toast.error('Invalid Captcha.')
 
@@ -114,7 +117,7 @@ const TeacherLogin = () => {
                 <label htmlFor='remember me'>Remember me</label>
               </div>
               <span>
-                <a href='#'>Forget Password?</a>
+                <a href='#'>Forgot Password?</a>
               </span>
             </div>
             <LoadCanvasTemplate />

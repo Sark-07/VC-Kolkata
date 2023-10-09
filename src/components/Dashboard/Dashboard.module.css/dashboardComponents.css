@@ -15,6 +15,7 @@
 }
 
 .common table .actions{
+    border: none;
     display: flex;
     flex-wrap: wrap;
     gap: 0.25em;
@@ -28,6 +29,7 @@
 
 
 .student-info{
+    border: none;
     display: flex;
     align-items: center;
     padding-inline: 1em ;

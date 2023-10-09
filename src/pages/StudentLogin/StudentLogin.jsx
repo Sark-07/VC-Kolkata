@@ -20,8 +20,11 @@ const StudentLogin = () => {
     e.preventDefault();
 
     try {
-      if (validateEmail(email) == null) {
+      if (validateEmail(email) === false) {
         setValidEmail(true);
+        setTimeout(() => {
+          setValidEmail(false);
+        }, 3000);
       }else if (validateCaptcha(captcha) == false) {
         toast.error('Invalid Captcha.')
 
