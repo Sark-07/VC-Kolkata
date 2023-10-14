@@ -93,6 +93,37 @@ const TeachingPlan = () => {
               <option value='Yoga materials'>Yoga materials</option>
             </select>
           </div>
+          <div className="department">
+                    <label htmlFor="Department">Department<sup>*</sup></label>
+                <select name="department" required="">
+			    <option value="">Select Department </option>
+					<option value="1">Bengali</option>
+					<option value="2">Botany</option>
+					<option value="3">Chemistry</option>
+					<option value="4">Computer Science</option>
+					<option value="5">Defence Studies</option>
+					<option value="6">Economics</option>
+					<option value="7">Education</option>
+					<option value="8">Electronics</option>
+					<option value="9">English</option>
+					<option value="10">Food And Nutrition</option>
+					<option value="11">Geography</option>
+					<option value="12">History</option>
+					<option value="13">Journalism and Mass Communication</option>
+					<option value="22">Librarian</option>
+					<option value="14">Mathematics</option>
+					<option value="26">PG</option>
+					<option value="15">Philosophy</option>
+					<option value="24">Photography (Add On course)</option>
+					<option value="21">Physical Education</option>
+					<option value="16">Physics</option>
+					<option value="17">Political  Science</option>
+					<option value="18">Sanskrit</option>
+					<option value="19">Statistics</option>
+					<option value="25">Yoga materials (Add On course)</option>
+					<option value="20">Zoology</option>
+						</select>
+          </div>
           <button className='form-submit'>Submit</button>
         </form>
 

@@ -7,7 +7,7 @@ import StudentLogin from './pages/StudentLogin/StudentLogin'
 import PageNotFound from './components/PageNotFound'
 import TeacherLogin from './pages/TeacherLogin/TeacherLogin'
 import TeacherDashboard from './pages/TeacherDashboard/TeacherDashboard'
-import StudentDashboard from './pages/StuddntDashboard/StudentDashboard'
+import StudentDashboard from './pages/StudentDashboard/StudentDashboard'
 import { Toaster } from 'react-hot-toast'
 const App = () => {
   

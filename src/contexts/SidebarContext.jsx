@@ -4,7 +4,7 @@ export const SidebarContext = createContext()
 
 const SidebarContextProvider = ({children}) => {
 
-    const [option, setOption] = useState(0)
+    const [option, setOption] = useState(null)
 
     return (
 

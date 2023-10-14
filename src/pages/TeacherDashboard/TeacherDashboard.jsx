@@ -11,7 +11,7 @@ const TeacherDashboard = ({index}) => {
   
   return (
     <>
-    <Dashboard/>
+    <Dashboard option = {index}/>
     </>
   )
 }

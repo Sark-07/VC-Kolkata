@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Navigate } from 'react-router-dom';
 import './StudentLogin.css/studentLogin.css';
 import { ReactComponent as Logo } from '../../assets/svg/logo.svg';
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha} from 'react-simple-captcha';
@@ -15,7 +16,7 @@ const StudentLogin = () => {
     loadCaptchaEnginge(4);
   }, []);
 
-  const url = 'http://localhost:3000/VC/api/auth/signin';
+  const url = 'http://localhost:3000/tours/api/auth/signin';
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -37,18 +38,20 @@ const StudentLogin = () => {
 
         console.log(payload);
         
-        // const { data } = await axios.post(url, payload);
-        // if (data.success) {
-        //   toast.success(data.message);
-        //   // setauth({...auth, user: data.user, token: data.token})
-        //   // localStorage.setItem('auth', JSON.stringify({user: data.user, token: data.token}))
-        //   // localStorage.setItem('token', data.token)
-        // toast.success('User Signed In.')
-        //   // console.log(data.user, data.token, auth);
-        //   setTimeout(() => {
-        //     //    login({token: data.token, user: data.user}, '/')
-        //   }, 2000);
-        // }
+        const { data } = await axios.post(url, payload);
+        if (data.success) {
+          toast.success(data.message);
+          // setauth({...auth, user: data.user, token: data.token})
+          // localStorage.setItem('auth', JSON.stringify({user: data.user, token: data.token}))
+          // localStorage.setItem('token', data.token)
+        toast.success('User Signed In.')
+          // console.log(data.user, data.token, auth);
+          setTimeout(() => {
+            //    login({token: data.token, user: data.user}, '/')
+            <Navigate to={'/'} replace={true}/>
+
+          }, 2000);
+        }
       }
     } catch (error) {
       console.log(error);

@@ -13,9 +13,9 @@ import StudentList from './StudentList';
 import  Overview  from './Overview';
 import { SidebarContext } from '../../contexts/SidebarContext';
 
-const Dashboard = () => {
+const Dashboard = ({option}) => {
 
-  const {option} = useContext(SidebarContext)
+  // const {option} = useContext(SidebarContext)
 
   return (
     <div className='dashboard'>

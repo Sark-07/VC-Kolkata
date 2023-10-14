@@ -6,6 +6,7 @@ import { validateEmail } from '../../utils/validateEmail';
 import './TeacherLogin.css/teacherLogin.css';
 import toast from 'react-hot-toast'
 import axios from 'axios';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const TeacherLogin = () => {
   const [email, setEmail] = useState('');
@@ -13,12 +14,13 @@ const TeacherLogin = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [validEmail, setValidEmail] = useState(false);
   const [captcha, setCaptcha] = useState('')
+  const navigate = useNavigate()
 
   useEffect(() => {
     loadCaptchaEnginge(4);
   }, []);
 
-  const url = 'http://localhost:3000/VC/api/auth/signin';
+  const url = 'http://localhost:3000/tours/api/auth/signin';
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -39,18 +41,20 @@ const TeacherLogin = () => {
 
         console.log(payload);
 
-        // const { data } = await axios.post(url, payload);
-        // if (data.success) {
-        //   toast.success(data.message);
-        //   // setauth({...auth, user: data.user, token: data.token})
-        //   // localStorage.setItem('auth', JSON.stringify({user: data.user, token: data.token}))
-        //   // localStorage.setItem('token', data.token)
+        const { data } = await axios.post(url, payload);
+        if (data.success) {
+          toast.success(data.message);
+          // setauth({...auth, user: data.user, token: data.token})
+          // localStorage.setItem('auth', JSON.stringify({user: data.user, token: data.token}))
+          // localStorage.setItem('token', data.token)
         // toast.success('User Signed In.')
-        //   // console.log(data.user, data.token, auth);
-        //   setTimeout(() => {
-        //     //    login({token: data.token, user: data.user}, '/')
-        //   }, 2000);
-        // }
+          // console.log(data.user, data.token, auth);
+         
+          setTimeout(() => {
+            //    login({token: data.token, user: data.user}, '/')
+            navigate('/')
+          }, 1000);
+        }
       }
     } catch (error) {
       console.log(error);
