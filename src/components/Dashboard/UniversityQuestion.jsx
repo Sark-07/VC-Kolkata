@@ -1,15 +1,84 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import toast from 'react-hot-toast';
+import axios from 'axios';
+const url = 'http://localhost:3000/upload';
 
 const UniversityQuestion = () => {
+	const navigate = useNavigate();
+  const [semester, setSemester] = useState('');
+  const [course, setCourse] = useState('');
+  const [dept, setDept] = useState('');
+  const [session, setSession] = useState('');
+  const [paper, setPaper] = useState('');
+  const [file, setFile] = useState(null);
+  const pathname = window.location.pathname;
+  const search = useLocation().search;
+  const querySemester = new URLSearchParams(search).get('semester');
+  const queryCourse = new URLSearchParams(search).get('course');
+  const querySession = new URLSearchParams(search).get('session');
+  const queryDept = new URLSearchParams(search).get('dept');
+  const [univQuestion, setUnivQuestion] = useState(null);
+
+  const handleUnivQuestionSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      if (semester && course && session && dept && paper && file) {
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('semester', semester);
+        formData.append('session', session);
+        formData.append('course', course);
+        formData.append('dept', dept);
+        formData.append('paper', paper);
+        formData.append('date', new Date().toLocaleDateString('de-DE'));
+
+        const { data } = await axios.post(url, formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        });
+        toast.success(data.message);
+      } else {
+        toast.error('Please fill up all fields.');
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const fetchUniversityQuestion = async (e) => {
+    e.preventDefault();
+    if (semester && course && session && dept) {
+      navigate(
+        `/teacher-dashboard/university-question/fetch?semester=${semester}&course=${course}&session=${session}&dep=${dept}`
+      );
+    }else {
+		toast.error('Please fill up all fields.');
+	}
+  };
+
+  useEffect(() => {
+    if (querySemester && queryCourse && querySession) {
+      fetch('http://localhost:3000/fetch')
+        .then((res) => {
+          return res.json();
+        })
+        .then((data) => {
+          console.log(data), setUnivQuestion(data);
+        });
+    }
+  }, [querySemester, queryCourse, querySession, queryDept]);
   return (
     <>
     <div className="university-question common">
         <h1>University Question</h1>
-        <form className='university-question-form common-form'>
+        <form className='university-question-form common-form' onSubmit={(e) => fetchUniversityQuestion(e)}>
             <div className="session">
             <label htmlFor="Session">Session<sup>*</sup></label>
-            <select name="session" required>
-			                <option value="">Select Session</option>
+            <select name="session" required onChange={(e) => setSession(e.target.value)}>
+			                <option>Select Session</option>
                             <option value="2014-15">2014-15</option>
 							<option value="2015-16">2015-16</option>
 							<option value="2016-17">2016-17</option>
@@ -50,7 +119,7 @@ const UniversityQuestion = () => {
             </div>
                 <div className="semester">
                 <label htmlFor="Semester">Semester<sup>*</sup></label>
-                <select name="semester" required="">
+                <select name="semester" required onChange={(e) => setSemester(e.target.value)}>
 			        <option >Select Semester</option>
 					<option value="1">1st Sem</option>
 					<option value="2">2nd Sem</option>
@@ -62,7 +131,7 @@ const UniversityQuestion = () => {
                 </div>
                 <div className="course-type">
                     <label htmlFor="Course Type">Course Type<sup>*</sup></label>
-                <select name="course" required="">
+                <select name="course" required onChange={(e) => setCourse(e.target.value)}>
                     <option defaultValue='Select Course Type'>Select Course Type</option>
                     <option value="General">General</option>
                     <option value="Honours">Honours</option>
@@ -73,8 +142,8 @@ const UniversityQuestion = () => {
                 </div>
                 <div className="department">
                     <label htmlFor="Department">Department<sup>*</sup></label>
-                <select name="department" required="">
-			    <option value="">Select Department </option>
+                <select name="department" required onChange={(e) => setDept(e.target.value)}>
+			    <option value>Select Department </option>
 					<option value="1">Bengali</option>
 					<option value="2">Botany</option>
 					<option value="3">Chemistry</option>
@@ -104,10 +173,16 @@ const UniversityQuestion = () => {
                 </div>
 				<button className='form-submit'>Submit</button>
         </form> 
-		<div className="add-instruction-material add-new-btn">
-          <button>Add New</button>
-        </div>   
-		<table >
+		{univQuestion && pathname == '/teacher-dashboard/university-question/fetch' ? (
+          <div>
+            <div className='add-material add-new-btn'>
+              <button
+                onClick={() => navigate('/teacher-dashboard/university-question/add')}
+              >
+                Add New
+              </button>
+            </div>
+            <table >
                 <thead>
                     <tr>
                       <th style={{width: '58px'}}>Sl&nbsp;No</th>
@@ -116,7 +191,48 @@ const UniversityQuestion = () => {
                       <th style={{width: '200p'}}>Action</th>
                     </tr>
                 </thead>
-            </table>    
+            </table>  
+          </div>
+        ) : (
+          <></>
+        )}
+		  
+		  <div
+          className={`${
+            pathname !== '/teacher-dashboard/university-question/add' &&
+            'hide-add-new-material'
+          }`}
+        >
+          <div className='add-material add-new-btn'>
+            <button onClick={() => window.history.back()}>Back</button>
+          </div>
+          <form
+            className='add-new-material'
+            onSubmit={(e) => handleUnivQuestionSubmit(e)}
+          >
+            <div className='add-new-material-container'>
+              <div className='new-material-paper-name'>
+                <label htmlFor='Paper Name'>Paper Name</label>
+                <input
+                  type='text'
+                  placeholder='Eg: DBMS'
+                  required
+                  onChange={(e) => setPaper(e.target.value)}
+                />
+              </div>
+              <div className='new-material-upload'>
+                <label htmlFor='Upload File'>Upload File</label>
+                <input
+                  type='file'
+                  onChange={(e) => {
+                    setFile(e.target.files[0]), console.log(e.target.files[0]);
+                  }}
+                />
+              </div>
+              <button className='add-new-material-btn'>Add Question</button>
+            </div>
+          </form>
+        </div>
     </div>
     </>
   )

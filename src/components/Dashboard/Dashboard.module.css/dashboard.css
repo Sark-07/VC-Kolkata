@@ -224,7 +224,8 @@ color: var(--text-color--aliceblue);
 .new-material-upload,
 .new-material-topic-name,
 .new-material-paper-name,
-.new-material-add-date{
+.new-material-add-date,
+.new-material-video-link{
     display: flex;
     align-items: center;
     justify-content: space-between;

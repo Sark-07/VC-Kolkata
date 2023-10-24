@@ -51,6 +51,8 @@ const QuestionBank = () => {
       navigate(
         `/teacher-dashboard/question-bank/fetch?semester=${semester}&course=${course}`
       );
+    }else {
+      toast.error('Please fill up all fields.');
     }
   };
 

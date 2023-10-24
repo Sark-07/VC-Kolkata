@@ -35,7 +35,11 @@ const App = () => {
       <Route path='/teacher-dashboard/ppt-class/fetch' index element={<TeacherProtectedRoute><TeacherDashboard index={7}/></TeacherProtectedRoute>} />
       <Route path='/teacher-dashboard/ppt-class/add' index element={<TeacherProtectedRoute><TeacherDashboard index={7}/></TeacherProtectedRoute>} />
       <Route path='/teacher-dashboard/video-lesson' index element={<TeacherProtectedRoute><TeacherDashboard index={8}/></TeacherProtectedRoute>} />
+      <Route path='/teacher-dashboard/video-lesson/fetch' index element={<TeacherProtectedRoute><TeacherDashboard index={8}/></TeacherProtectedRoute>} />
+      <Route path='/teacher-dashboard/video-lesson/add' index element={<TeacherProtectedRoute><TeacherDashboard index={8}/></TeacherProtectedRoute>} />
       <Route path='/teacher-dashboard/university-question' index element={<TeacherProtectedRoute><TeacherDashboard index={9}/></TeacherProtectedRoute>} />
+      <Route path='/teacher-dashboard/university-question/fetch' index element={<TeacherProtectedRoute><TeacherDashboard index={9}/></TeacherProtectedRoute>} />
+      <Route path='/teacher-dashboard/university-question/add' index element={<TeacherProtectedRoute><TeacherDashboard index={9}/></TeacherProtectedRoute>} />
       <Route path='/teacher-dashboard/student-query' index element={<TeacherProtectedRoute><TeacherDashboard index={10}/></TeacherProtectedRoute>} />
       <Route path='/teacher-dashboard/college-exam' index element={<TeacherProtectedRoute><TeacherDashboard index={11}/></TeacherProtectedRoute>} />
       <Route path='/teacher-dashboard/settings' index element={<TeacherProtectedRoute><TeacherDashboard index={12}/></TeacherProtectedRoute>} />

@@ -49,6 +49,8 @@ const StudyMaterial = () => {
       navigate(
         `/teacher-dashboard/study-material/fetch?semester=${semester}&course=${course}`
       );
+    }else {
+      toast.error('Please fill up all fields.');
     }
   };
 
@@ -176,7 +178,7 @@ const StudyMaterial = () => {
               'hide-add-new-material'
             }`}>
           <div
-            className={`add-study-material add-new-btn`}
+            className={`add-material add-new-btn`}
           >
             <button
               onClick={() =>
@@ -187,10 +189,10 @@ const StudyMaterial = () => {
             </button>
           </div>
           <form
-            className={`add-new-study-material`}
+            className={`add-new-material`}
             onSubmit={(e) => handleStudyMaterialSubmit(e)}
           >
-            <div className='add-new-study-material-container'>
+            <div className='add-new-material-container'>
               <div className='new-material-paper-name'>
                 <label htmlFor='Paper Name'>Paper Name</label>
                 <input

@@ -18,7 +18,7 @@ const PPTClass = () => {
   const querySession = new URLSearchParams(search).get('session');
   const [ppt, setPPt] = useState(null);
 
-  const handlePPTsubmitSubmit = async (e) => {
+  const handlePPTSubmit = async (e) => {
     e.preventDefault();
 
     try {
@@ -51,6 +51,8 @@ const PPTClass = () => {
       navigate(
         `/teacher-dashboard/ppt-class/fetch?semester=${semester}&course=${course}&session=${session}`
       );
+    }else {
+      toast.error('Please fill up all fields.');
     }
   };
 
@@ -65,7 +67,7 @@ const PPTClass = () => {
         });
     }
   }, [querySemester, queryCourse, querySession]);
-  console.log(pathname, ppt);
+ 
   return (
     <>
       <div className='PPT-class common'>
@@ -195,7 +197,7 @@ const PPTClass = () => {
           </div>
           <form
             className='add-new-material'
-            onSubmit={(e) => handlePPTsubmitSubmit(e)}
+            onSubmit={(e) => handlePPTSubmit(e)}
           >
             <div className='add-new-material-container'>
               <div className='new-material-topic-name'>
