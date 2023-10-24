@@ -4,19 +4,30 @@ import './StudentLogin.css/studentLogin.css';
 import { ReactComponent as Logo } from '../../assets/svg/logo.svg';
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha} from 'react-simple-captcha';
 import { validateEmail } from '../../utils/validateEmail';
+import {useAuth} from '../../contexts/AuthContext'
+import axios from 'axios';
 import toast from 'react-hot-toast'
 
 
 const StudentLogin = () => {
+  const {isAuthenticated, login} = useAuth()
+  console.log(useAuth());
+  if (isAuthenticated()){
+
+    return <Navigate to={'/'}/>
+
+   }
   const [email, setEmail] = useState('');
   const [dob, setDob] = useState('');
   const [captcha, setCaptcha] = useState('')
   const [validEmail, setValidEmail] = useState(false);
+
+
   useEffect(() => {
     loadCaptchaEnginge(4);
   }, []);
 
-  const url = 'http://localhost:3000/tours/api/auth/signin';
+  const url = 'http://localhost/vc/StudentLogin.php';
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -33,24 +44,22 @@ const StudentLogin = () => {
        else {
         const payload = {
           email: email,
-          DOB: dob,
+          DOB: dob.split("-").reverse().join("-"),
         };
 
         console.log(payload);
         
         const { data } = await axios.post(url, payload);
+        console.log(data);
         if (data.success) {
           toast.success(data.message);
-          // setauth({...auth, user: data.user, token: data.token})
-          // localStorage.setItem('auth', JSON.stringify({user: data.user, token: data.token}))
-          // localStorage.setItem('token', data.token)
-        toast.success('User Signed In.')
-          // console.log(data.user, data.token, auth);
           setTimeout(() => {
-            //    login({token: data.token, user: data.user}, '/')
-            <Navigate to={'/'} replace={true}/>
-
-          }, 2000);
+            login({token: data.data.token, email: data.email}, '/')
+            
+          }, 1000);
+        }else{
+          
+          toast.error(data.message);
         }
       }
     } catch (error) {

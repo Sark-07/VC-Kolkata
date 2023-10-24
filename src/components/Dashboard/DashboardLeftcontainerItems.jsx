@@ -19,80 +19,9 @@ import {
 } from 'react-icons/md';
 import { SidebarContext } from '../../contexts/SidebarContext';
 const DashboardLeftcontainerItems = () => {
-  const [active, setActive] = useState(0);
-  const {option} = useContext(SidebarContext)
-
-  // let item = [
-  //   <>
-  //     <Link to={`/teacher-dashboard`}>
-  //       <TbAntennaBars5 style={active == 0 && { color: '#6366f1' }} />
-  //       Overview
-  //     </Link>
-  //   </>,
-  //   <>
-  //     <PiStudentDuotone style={active == 1 && { color: '#6366f1' }} />
-  //     Student List
-  //   </>,
-  //   <>
-  //     <MdOutlineIntegrationInstructions
-  //       style={active == 2 && { color: '#6366f1' }}
-  //     />
-  //     Instruction Material
-  //   </>,
-  //   <>
-  //     <PiChalkboardTeacherFill style={active == 3 && { color: '#6366f1' }} />
-  //     Teaching Plan
-  //   </>,
-  //   <span onClick={() => console.log('hi')}>
-  //     <MdOutlineNotificationsActive
-  //       style={active == 4 && { color: '#6366f1' }}
-  //     />
-  //     Notification
-  //   </span>,
-  //   <>
-  //     <SlNotebook style={active == 5 && { color: '#6366f1' }} />
-  //     E-books
-  //   </>,
-  //   <>
-  //     <FaRegQuestionCircle style={active == 6 && { color: '#6366f1' }} />
-  //     Question Bank
-  //   </>,
-  //   <>
-  //     <Link to={`/teacher-dashboard/pptclass`}>
-  //       <BsFiletypePpt style={active == 7 && { color: '#6366f1' }} />
-  //       PPT Class
-  //     </Link>
-  //   </>,
-  //   <>
-  //     <LuVideo style={active == 8 && { color: '#6366f1' }} />
-  //     Video Lesson
-  //   </>,
-  //   <>
-  //     <LiaUniversitySolid style={active == 9 && { color: '#6366f1' }} />
-  //     University Question
-  //   </>,
-  //   <>
-  //     <MdQueryStats style={active == 10 && { color: '#6366f1' }} />
-  //     Student Query
-  //   </>,
-  //   <>
-  //     <PiExamBold style={active == 11 && { color: '#6366f1' }} />
-  //     College exam
-  //   </>,
-  //   <>
-  //     <IoIosSettings style={active == 12 && { color: '#6366f1' }} />
-  //     Settings
-  //   </>,
-  // ];
-
+  const { option } = useContext(SidebarContext);
   return (
     <ul className='dashboard-items-container'>
-      {/* {
-            menus.map((items, index) => {
-                return <li key={index} onClick={() => {setActive(index), setOption(index)}} className={`${index === active && 'active-bg'}`}><Link to={items.path}>{items.menu}</Link></li>
-            })
-        } */}
-
       <li className={`${option === 0 && 'active-bg'}`}>
         <Link to={`/teacher-dashboard`}>
           <TbAntennaBars5 style={option == 0 && { color: '#6366f1' }} />
@@ -106,11 +35,11 @@ const DashboardLeftcontainerItems = () => {
         </Link>
       </li>
       <li className={`${option === 2 && 'active-bg'}`}>
-        <Link to={`/teacher-dashboard/instruction-material`}>
+        <Link to={`/teacher-dashboard/study-material`}>
           <MdOutlineIntegrationInstructions
             style={option == 2 && { color: '#6366f1' }}
           />
-          Instruction Material
+          Study Material
         </Link>
       </li>
       <li className={`${option === 3 && 'active-bg'}`}>

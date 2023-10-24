@@ -129,6 +129,10 @@ const TeachingPlan = () => {
 
         {/* Response */}
 
+        <div className="add-instruction-material add-new-btn">
+          <button>Add New</button>
+        </div>
+
         <table>
           <thead >
             <tr>
@@ -154,7 +158,6 @@ const TeachingPlan = () => {
                 </a>
               </td>
               <td className='actions'>
-                <button>Copy</button>
                 <button style={{marginInline: '0.5em'}}>Edit</button>
                 <button>Delete</button>
               </td>

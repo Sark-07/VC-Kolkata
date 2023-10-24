@@ -1,5 +1,5 @@
 .dashboard{
-    background-color: aliceblue;
+    background-color: var(--text-color--aliceblue);
     display: grid;
     grid-template-columns: 16rem 1fr;
     grid-template-rows: min(100vh);
@@ -31,12 +31,17 @@
     justify-content: flex-start;
     flex-direction: column;
     align-items: center;
-    color: aliceblue;
+    color: var(--text-color--aliceblue);
 }
 .dashboard-logo > h6{
     font-size: 2rem;
     text-align: center;
 }
+
+.dashboard-logo:hover{
+color: var(--text-color--aliceblue);
+}
+
 .logo-icon{
     width: 5rem;
     margin-bottom: -0.25em;
@@ -72,7 +77,7 @@
     background-color: rgba(255, 255, 255, 0.04);
 }
 .dashboard-items-container > li:hover{
-    color: aliceblue;
+    color: var(--text-color--aliceblue);
     background-color: rgba(255, 255, 255, 0.04);
 }
 
@@ -175,6 +180,9 @@
     background-color: var(--primary-color);
     font-size: 0.9rem;
 }
+.add-new-btn{
+    padding-block: 0.5em;
+}
 
 /* Overview */
 /* .Overview{
@@ -192,4 +200,51 @@
 }
 .stat-elements{
     width: 100%;
+}
+
+/* ****************************Common needed********************************* */
+
+/* New Material upload */
+.add-new-material{
+    width: 100%;
+    border-top: 0.5px solid var(--light-border);
+    display: grid;
+    place-items: center;
+
+}
+
+.add-new-material-container{
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    width: 26rem;
+    padding-block: 0.5em;
+}
+
+.new-material-upload,
+.new-material-topic-name,
+.new-material-paper-name,
+.new-material-add-date{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    /* padding: 0.5em; */
+}
+
+.add-new-material input{
+    width: 20rem;
+    padding: 0.75em 1em;
+    border: 0.5px solid var(--light-border);
+    border-radius: 4px;
+    outline: none;
+    background-color: white;
+}
+
+.add-new-material-btn{
+    width: fit-content;
+}
+
+.hide-add-new-material{
+display: none;
 }

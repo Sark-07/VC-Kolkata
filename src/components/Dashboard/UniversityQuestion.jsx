@@ -103,7 +103,10 @@ const UniversityQuestion = () => {
 						</select>
                 </div>
 				<button className='form-submit'>Submit</button>
-        </form>    
+        </form> 
+		<div className="add-instruction-material add-new-btn">
+          <button>Add New</button>
+        </div>   
 		<table >
                 <thead>
                     <tr>

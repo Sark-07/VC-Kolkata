@@ -8,7 +8,7 @@ import TeachingPlan from './TeachingPlan';
 import QuestionBank from './QuestionBank';
 import VideoLesson from './VideoLesson';
 import PPTClass from './PPTClass';
-import InstructionMaterial from './InstructionMaterial';
+import StudyMaterial from './StudyMaterial';
 import StudentList from './StudentList';
 import  Overview  from './Overview';
 import { SidebarContext } from '../../contexts/SidebarContext';
@@ -25,7 +25,7 @@ const Dashboard = ({option}) => {
       <div className='dashboard-right'>
         <DashboardRightHeader />
         {
-          option == 0 ? <Overview/> : option == 1 ? <StudentList/> : option == 2 ? <InstructionMaterial/> : option == 3 ? <TeachingPlan/> : option == 4 ? <></> : option == 5 ? <></> : option == 6 ? <QuestionBank/> : option == 7 ? <PPTClass/> : option == 8 ? <VideoLesson/> : option == 9 ? <UniversityQuestion/> : <></>
+          option == 0 ? <Overview/> : option == 1 ? <StudentList/> : option == 2 ? <StudyMaterial/> : option == 3 ? <TeachingPlan/> : option == 4 ? <></> : option == 5 ? <></> : option == 6 ? <QuestionBank/> : option == 7 ? <PPTClass/> : option == 8 ? <VideoLesson/> : option == 9 ? <UniversityQuestion/> : <></>
         }
       </div>
     </div>

@@ -6,7 +6,7 @@ import { validateEmail } from '../../utils/validateEmail';
 import './TeacherLogin.css/teacherLogin.css';
 import toast from 'react-hot-toast'
 import axios from 'axios';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const TeacherLogin = () => {
   const [email, setEmail] = useState('');
@@ -44,9 +44,9 @@ const TeacherLogin = () => {
         const { data } = await axios.post(url, payload);
         if (data.success) {
           toast.success(data.message);
-          // setauth({...auth, user: data.user, token: data.token})
-          // localStorage.setItem('auth', JSON.stringify({user: data.user, token: data.token}))
-          // localStorage.setItem('token', data.token)
+          setauth({...auth, user: data.user, token: data.token})
+          localStorage.setItem('auth', JSON.stringify({user: data.user, token: data.token}))
+          localStorage.setItem('token', data.token)
         // toast.success('User Signed In.')
           // console.log(data.user, data.token, auth);
          
