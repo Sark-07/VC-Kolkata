@@ -14,6 +14,7 @@ import './Dashboard.module.css/dashboardComponents.css';
 import Notification from './Notification';
 import StudentQuery from './StudentQuery';
 import CollegeExam from './CollegeExam';
+import Ebook from './Ebook';
 
 const Dashboard = ({option}) => {
 
@@ -27,7 +28,7 @@ const Dashboard = ({option}) => {
       <div className='dashboard-right'>
         <DashboardRightHeader />
         {
-          option == 0 ? <Overview/> : option == 1 ? <StudentList/> : option == 2 ? <StudyMaterial/> : option == 3 ? <TeachingPlan/> : option == 4 ? <Notification/> : option == 5 ? <></> : option == 6 ? <QuestionBank/> : option == 7 ? <PPTClass/> : option == 8 ? <VideoLesson/> : option == 9 ? <UniversityQuestion/> : option == 10 ? <StudentQuery/> : option == 11 ? <CollegeExam/> : <></>
+          option == 0 ? <Overview/> : option == 1 ? <StudentList/> : option == 2 ? <StudyMaterial/> : option == 3 ? <TeachingPlan/> : option == 4 ? <Notification/> : option == 5 ? <Ebook/> : option == 6 ? <QuestionBank/> : option == 7 ? <PPTClass/> : option == 8 ? <VideoLesson/> : option == 9 ? <UniversityQuestion/> : option == 10 ? <StudentQuery/> : option == 11 ? <CollegeExam/> : <></>
         }
       </div>
     </div>

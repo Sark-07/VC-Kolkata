@@ -132,7 +132,7 @@ const VideoLesson = () => {
             onSubmit={(e) => handleVideosubmitSubmit(e)}
           >
             <div className='add-new-material-container'>
-              <div className='new-material-topic-name'>
+              <div className='common-fields'>
                 <label htmlFor='Topic Name'>Topic Name</label>
                 <input
                   type='text'
@@ -141,7 +141,7 @@ const VideoLesson = () => {
                   onChange={(e) => setTopic(e.target.value)}
                 />
               </div>
-              <div className='new-material-video-link'>
+              <div className='common-fields'>
                 <label htmlFor='Video Link'>Video Link</label>
                 <input
                   type='text'

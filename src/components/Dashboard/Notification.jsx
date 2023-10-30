@@ -76,7 +76,7 @@ const Notification = () => {
         <form className='notification-form common-form' onSubmit={(e) => fetchNotification(e)}>
         <div className='session'>
             <label htmlFor='Session'>
-              Session<sup>*</sup>
+              Session
             </label>
             <select name='session' required onChange={(e) => setSession(e.target.value)}>
               <option value=''>Select Session</option>
@@ -161,7 +161,7 @@ const Notification = () => {
             onSubmit={(e) => handleNotificationSubmit(e)}
           >
             <div className='add-new-material-container'>
-            <div className='new-material-semester'>
+            <div className='common-fields'>
             <label htmlFor='Semester'>
               Semester<sup>*</sup>
             </label>
@@ -179,9 +179,9 @@ const Notification = () => {
               <option value='6'>6th Sem</option>
             </select>
           </div>
-          <div className='new-material-course-type'>
+          <div className='common-fields'>
             <label htmlFor='Course Type'>
-              Course Type<sup>*</sup>
+              Course Type
             </label>
             <select
               name='course'
@@ -198,7 +198,7 @@ const Notification = () => {
               <option value='Yoga materials'>Yoga materials</option>
             </select>
           </div>
-              <div className='new-material-date'>
+              <div className='common-fields'>
                 <label htmlFor='Date'>Date</label>
                 <input
                   type='date'
@@ -206,8 +206,8 @@ const Notification = () => {
                   onChange={(e) => setDate(e.target.value)}
                 />
               </div>
-              <div className='new-material-topic-name'>
-                <label htmlFor='Topic Name'>Topic Name</label>
+              <div className='common-fields'>
+                <label htmlFor='Subject'>Subject</label>
                 <input
                   type='text'
                   placeholder='Eg: DBMS'
@@ -215,16 +215,7 @@ const Notification = () => {
                   onChange={(e) => setSubject(e.target.value)}
                 />
               </div>
-              <div className='new-material-topic-name'>
-                <label htmlFor='Topic Name'>Topic Name</label>
-                <input
-                  type='text'
-                  placeholder='Eg: DBMS'
-                  required
-                  onChange={(e) => setSubject(e.target.value)}
-                />
-              </div>
-              <div className='new-material-upload'>
+              <div className='common-fields'>
                 <label htmlFor='Upload File'>Upload File</label>
                 <input
                   type='file'
@@ -233,7 +224,7 @@ const Notification = () => {
                   }}
                 />
               </div>
-              <button className='add-new-material-btn'>Add Document</button>
+              <button className='add-new-material-btn'>Add Notification</button>
             </div>
           </form>
         </div>      

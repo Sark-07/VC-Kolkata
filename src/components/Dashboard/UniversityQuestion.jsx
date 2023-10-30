@@ -211,7 +211,7 @@ const UniversityQuestion = () => {
             onSubmit={(e) => handleUnivQuestionSubmit(e)}
           >
             <div className='add-new-material-container'>
-              <div className='new-material-paper-name'>
+              <div className='common-fields'>
                 <label htmlFor='Paper Name'>Paper Name</label>
                 <input
                   type='text'
@@ -220,7 +220,7 @@ const UniversityQuestion = () => {
                   onChange={(e) => setPaper(e.target.value)}
                 />
               </div>
-              <div className='new-material-upload'>
+              <div className='common-fields'>
                 <label htmlFor='Upload File'>Upload File</label>
                 <input
                   type='file'

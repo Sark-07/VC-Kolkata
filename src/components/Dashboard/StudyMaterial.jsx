@@ -209,7 +209,7 @@ const StudyMaterial = () => {
             onSubmit={(e) => handleStudyMaterialSubmit(e)}
           >
             <div className='add-new-material-container'>
-              <div className='new-material-paper-name'>
+              <div className='common-fields'>
                 <label htmlFor='Paper Name'>Paper Name</label>
                 <input
                   type='text'
@@ -218,7 +218,7 @@ const StudyMaterial = () => {
                   onChange={(e) => setPaper(e.target.value)}
                 />
               </div>
-              <div className='new-material-topic-name'>
+              <div className='common-fields'>
                 <label htmlFor='Topic Name'>Topic Name</label>
                 <input
                   type='text'
@@ -227,7 +227,7 @@ const StudyMaterial = () => {
                   onChange={(e) => setTopic(e.target.value)}
                 />
               </div>
-              <div className='new-material-upload'>
+              <div className='common-fields'>
                 <label htmlFor='Upload File'>Upload File</label>
                 <input
                   type='file'
@@ -260,7 +260,7 @@ const StudyMaterial = () => {
             onSubmit={(e) => handleStudyMaterialSubmit(e)}
           >
             <div className='add-new-material-container'>
-              <div className='new-material-paper-name'>
+              <div className='common-fields'>
                 <label htmlFor='Paper Name'>Paper Name</label>
                 <input
                   type='text'
@@ -269,7 +269,7 @@ const StudyMaterial = () => {
                   onChange={(e) => setPaper(e.target.value)}
                 />
               </div>
-              <div className='new-material-topic-name'>
+              <div className='common-fields'>
                 <label htmlFor='Topic Name'>Topic Name</label>
                 <input
                   type='text'
@@ -278,7 +278,7 @@ const StudyMaterial = () => {
                   onChange={(e) => setTopic(e.target.value)}
                 />
               </div>
-              <div className='new-material-upload'>
+              <div className='common-fields'>
                 <label htmlFor='Upload File'>Upload File</label>
                 <input
                   type='file'

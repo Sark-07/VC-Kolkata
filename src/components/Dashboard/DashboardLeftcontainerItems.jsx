@@ -8,7 +8,7 @@ import {
 import { FaRegQuestionCircle } from 'react-icons/fa';
 import { LiaUniversitySolid } from 'react-icons/lia';
 import { TbAntennaBars5 } from 'react-icons/tb';
-import { IoIosSettings } from 'react-icons/io';
+import { CgProfile } from 'react-icons/cg';
 import { BsFiletypePpt } from 'react-icons/bs';
 import { SlNotebook } from 'react-icons/sl';
 import { LuVideo } from 'react-icons/lu';
@@ -101,9 +101,9 @@ const DashboardLeftcontainerItems = () => {
         </Link>
       </li>
       <li className={`${option === 12 && 'active-bg'}`}>
-        <Link to={`/teacher-dashboard/settings`}>
-          <IoIosSettings style={option == 12 && { color: '#6366f1' }} />
-          Settings
+        <Link to={`/teacher-dashboard/profile`}>
+          <CgProfile style={option == 12 && { color: '#6366f1' }} />
+          Profile
         </Link>
       </li>
     </ul>

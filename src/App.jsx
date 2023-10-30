@@ -30,6 +30,7 @@ const App = () => {
       <Route path='/teacher-dashboard/notification/fetch' index element={<TeacherProtectedRoute><TeacherDashboard index={4}/></TeacherProtectedRoute>} />
       <Route path='/teacher-dashboard/notification/add' index element={<TeacherProtectedRoute><TeacherDashboard index={4}/></TeacherProtectedRoute>} />
       <Route path='/teacher-dashboard/e-books' index element={<TeacherProtectedRoute><TeacherDashboard index={5}/></TeacherProtectedRoute>} />
+      <Route path='/teacher-dashboard/e-books/add' index element={<TeacherProtectedRoute><TeacherDashboard index={5}/></TeacherProtectedRoute>} />
       <Route path='/teacher-dashboard/question-bank' index element={<TeacherProtectedRoute><TeacherDashboard index={6}/></TeacherProtectedRoute>} />
       <Route path='/teacher-dashboard/question-bank/add' index element={<TeacherProtectedRoute><TeacherDashboard index={6}/></TeacherProtectedRoute>} />
       <Route path='/teacher-dashboard/question-bank/fetch' index element={<TeacherProtectedRoute><TeacherDashboard index={6}/></TeacherProtectedRoute>} />
@@ -46,7 +47,7 @@ const App = () => {
       <Route path='/teacher-dashboard/college-exam' index element={<TeacherProtectedRoute><TeacherDashboard index={11}/></TeacherProtectedRoute>} />
       <Route path='/teacher-dashboard/college-exam/fetch' index element={<TeacherProtectedRoute><TeacherDashboard index={11}/></TeacherProtectedRoute>} />
       <Route path='/teacher-dashboard/college-exam/add' index element={<TeacherProtectedRoute><TeacherDashboard index={11}/></TeacherProtectedRoute>} />
-      <Route path='/teacher-dashboard/settings' index element={<TeacherProtectedRoute><TeacherDashboard index={12}/></TeacherProtectedRoute>} />
+      <Route path='/teacher-dashboard/profile' index element={<TeacherProtectedRoute><TeacherDashboard index={12}/></TeacherProtectedRoute>} />
       <Route path='/student-dashboard' index element={<StudentDashboard/>} />
       <Route path='*' index element={<PageNotFound/>} />
       <Route path='/test' index element={<Test/>} />

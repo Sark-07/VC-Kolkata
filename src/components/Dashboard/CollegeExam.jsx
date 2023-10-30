@@ -1,16 +1,90 @@
-import React from 'react';
-
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import toast from 'react-hot-toast';
+import axios from 'axios';
+const url = 'http://localhost:3000/upload';
 const CollegeExam = () => {
+    const navigate = useNavigate();
+  const [semester, setSemester] = useState('');
+  const [course, setCourse] = useState('');
+  const [session, setSession] = useState('');
+  const [timeOfExam, setTimeOfExam] = useState('');
+  const [fullMarks, setFullMarks] = useState('');
+  const [paper, setPaper] = useState('')
+  const [file, setFile] = useState(null);
+  const pathname = window.location.pathname;
+  const search = useLocation().search;
+  const querySemester = new URLSearchParams(search).get('semester');
+  const queryCourse = new URLSearchParams(search).get('course');
+  const querySession = new URLSearchParams(search).get('session');
+  const [collegeExamList, setCollegeExamList] = useState(null);
+
+  const handleCollegeExamSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      if (semester && course && session && paper && fullMarks && file && timeOfExam) {
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('semester', semester);
+        formData.append('session', session);
+        formData.append('course', course);
+        formData.append('fullMarks', fullMarks);
+        formData.append('timeOfExam', timeOfExam);
+        formData.append('paper', paper);
+        formData.append('date', new Date().toLocaleDateString('de-DE'));
+
+
+        const { data } = await axios.post(url, formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        });
+        toast.success(data.message);
+      } else {
+        toast.error('Please fill up all fields.');
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const fetchCollegeExamList = async (e) => {
+    e.preventDefault();
+    if (semester && course && session) {
+      navigate(
+        `/teacher-dashboard/college-exam/fetch?semester=${semester}&course=${course}&session=${session}`
+      );
+    }else {
+      toast.error('Please fill up all fields.');
+    }
+  };
+
+  useEffect(() => {
+    if (querySemester && queryCourse && querySession) {
+      fetch('http://localhost:3000/fetch')
+        .then((res) => {
+          return res.json();
+        })
+        .then((data) => {
+          console.log(data), setCollegeExamList(data);
+        });
+    }
+  }, [querySemester, queryCourse, querySession]);
+
+
+
+
   return (
     <>
       <div className='common college-exam'>
         <h1>College Exam</h1>
-        <form className='teaching-plan-form common-form' onSubmit={(e) => handleSubmit(e)}>
+        <form className='teaching-plan-form common-form' onSubmit={(e) => fetchCollegeExamList(e)}>
           <div className='session'>
             <label htmlFor='Session'>
               Session<sup>*</sup>
             </label>
-            <select name='session' required>
+            <select name='session' required onChange={(e) => setSession(e.target.value)}>
               <option value=''>Select Session</option>
               <option value='2014-15'>2014-15</option>
               <option value='2015-16'>2015-16</option>
@@ -54,8 +128,8 @@ const CollegeExam = () => {
             <label htmlFor='Semester'>
               Semester<sup>*</sup>
             </label>
-            <select name='semester' required=''>
-              <option>Select Semester</option>
+            <select name='semester' required onChange={(e) => setSemester(e.target.value)}>
+              <option value=''>Select Semester</option>
               <option value='1'>1st Sem</option>
               <option value='2'>2nd Sem</option>
               <option value='3'>3rd Sem</option>
@@ -68,7 +142,7 @@ const CollegeExam = () => {
             <label htmlFor='Course Type'>
               Course Type<sup>*</sup>
             </label>
-            <select name='course' required=''>
+            <select name='course' required onChange={(e) => setCourse(e.target.value)}>
               <option defaultValue='Select Course Type'>
                 Select Course Type
               </option>
@@ -81,6 +155,86 @@ const CollegeExam = () => {
           </div>
           <button className='form-submit'>Submit</button>
         </form>
+        {collegeExamList && pathname == '/teacher-dashboard/college-exam/fetch' ? (
+          <div>
+            <div className='add-material add-new-btn'>
+              <button
+                onClick={() => navigate('/teacher-dashboard/college-exam/add')}
+              >
+                Add New
+              </button>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                      <th style={{width: '58px'}}>Sl No</th>
+                      <th>Paper</th>
+                      <th>Full Mark</th>
+                      <th>Time of Exam</th>
+                      <th>View/Print Question</th>
+                      <th style={{width: '110px'}}>View File</th>
+                      <th>Publish Status</th>
+                      <th style={{width: '200px'}}>Action</th>
+                    </tr>
+                </thead>
+            </table>
+          </div>
+        ) : (
+          <></>
+        )}
+        <div
+          className={`${
+            pathname !== '/teacher-dashboard/college-exam/add' &&
+            'hide-add-new-material'
+          }`}
+        >
+          <div className='add-material add-new-btn'>
+            <button onClick={() => window.history.back()}>Back</button>
+          </div>
+          <form
+            className='add-new-material'
+            onSubmit={(e) => handleCollegeExamSubmit(e)}
+          >
+            <div className='add-new-material-container'>
+            <div className='common-fields'>
+                <label htmlFor='Paper Name'>Paper Name</label>
+                <input
+                  type='text'
+                  placeholder='Eg: DBMS'
+                  required
+                  onChange={(e) => setPaper(e.target.value)}
+                />
+              </div>
+              <div className='common-fields'>
+                <label htmlFor='Time Of Exam'>Time Of Exam</label>
+                <input
+                  type='text'
+                  required
+                  onChange={(e) => setTimeOfExam(e.target.value)}
+                />
+              </div>
+              
+              <div className='common-fields'>
+                <label htmlFor='Full Marks'>Full Marks</label>
+                <input
+                  type='text'
+                  required
+                  onChange={(e) => setFullMarks(e.target.value)}
+                />
+              </div>
+              <div className='common-fields'>
+                <label htmlFor='Upload File'>Upload File</label>
+                <input
+                  type='file'
+                  onChange={(e) => {
+                    setFile(e.target.files[0]), console.log(e.target.files[0]);
+                  }}
+                />
+              </div>
+              <button className='add-new-material-btn'>Add Document</button>
+            </div>
+          </form>
+        </div>  
       </div>
     </>
   );

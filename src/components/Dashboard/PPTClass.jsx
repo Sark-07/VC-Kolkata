@@ -11,8 +11,6 @@ const PPTClass = () => {
   const [session, setSession] = useState('');
   const [topic, setTopic] = useState('');
   const [date, setDate] = useState('');
-  const [subject, setSubject] = useState('');
-  const [contentType, setContentType] = useState('')
   const [file, setFile] = useState(null);
   const pathname = window.location.pathname;
   const search = useLocation().search;
@@ -203,7 +201,7 @@ const PPTClass = () => {
             onSubmit={(e) => handlePPTSubmit(e)}
           >
             <div className='add-new-material-container'>
-              <div className='new-material-topic-name'>
+              <div className='common-fields'>
                 <label htmlFor='Topic Name'>Topic Name</label>
                 <input
                   type='text'
@@ -212,7 +210,7 @@ const PPTClass = () => {
                   onChange={(e) => setTopic(e.target.value)}
                 />
               </div>
-              <div className='new-material-upload'>
+              <div className='common-fields'>
                 <label htmlFor='Upload File'>Upload File</label>
                 <input
                   type='file'

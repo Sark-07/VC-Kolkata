@@ -220,14 +220,8 @@ color: var(--text-color--aliceblue);
     width: 26rem;
     padding-block: 0.5em;
 }
-.new-material-semester,
-.new-material-course-type,
-.new-material-date,
-.new-material-upload,
-.new-material-topic-name,
-.new-material-paper-name,
-.new-material-add-date,
-.new-material-video-link{
+.common-fields,
+.new-material-add-date{
     display: flex;
     align-items: center;
     justify-content: space-between;
