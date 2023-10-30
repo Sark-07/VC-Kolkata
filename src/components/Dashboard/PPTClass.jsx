@@ -10,6 +10,9 @@ const PPTClass = () => {
   const [course, setCourse] = useState('');
   const [session, setSession] = useState('');
   const [topic, setTopic] = useState('');
+  const [date, setDate] = useState('');
+  const [subject, setSubject] = useState('');
+  const [contentType, setContentType] = useState('')
   const [file, setFile] = useState(null);
   const pathname = window.location.pathname;
   const search = useLocation().search;

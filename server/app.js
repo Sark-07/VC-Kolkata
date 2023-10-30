@@ -2,8 +2,10 @@ const express = require('express');
 const multer = require('multer');
 const cors = require('cors')
 const app = express();
+const bodyParser = require('body-parser')
 
 app.use(cors({origin: '*'}))
+app.use(bodyParser.json())
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -16,11 +18,12 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-app.post('/upload', upload.single('file'), (req, res) => {
-  const { semester, course, paper, topic, session } = req.body;
+app.post('/upload', upload.single('file'), async (req, res) => {
+  const { semester, course, paper, topic, email } = req.body;
   const file = req.file;
+  // console.log(req.body);
 
-  console.log(semester, course, paper, topic, session, "\n", file);
+  console.log(semester, course, paper, topic, email, "\n", file);
 
   res.status(201).json({success: true, message: 'File uploaded successfully.'});
 });

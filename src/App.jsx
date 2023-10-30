@@ -27,6 +27,8 @@ const App = () => {
       <Route path='/teacher-dashboard/study-material/edit' index element={<TeacherProtectedRoute><TeacherDashboard index={2}/></TeacherProtectedRoute>} />
       <Route path='/teacher-dashboard/teaching-plan' index element={<TeacherProtectedRoute><TeacherDashboard index={3}/></TeacherProtectedRoute>} />
       <Route path='/teacher-dashboard/notification' index element={<TeacherProtectedRoute><TeacherDashboard index={4}/></TeacherProtectedRoute>} />
+      <Route path='/teacher-dashboard/notification/fetch' index element={<TeacherProtectedRoute><TeacherDashboard index={4}/></TeacherProtectedRoute>} />
+      <Route path='/teacher-dashboard/notification/add' index element={<TeacherProtectedRoute><TeacherDashboard index={4}/></TeacherProtectedRoute>} />
       <Route path='/teacher-dashboard/e-books' index element={<TeacherProtectedRoute><TeacherDashboard index={5}/></TeacherProtectedRoute>} />
       <Route path='/teacher-dashboard/question-bank' index element={<TeacherProtectedRoute><TeacherDashboard index={6}/></TeacherProtectedRoute>} />
       <Route path='/teacher-dashboard/question-bank/add' index element={<TeacherProtectedRoute><TeacherDashboard index={6}/></TeacherProtectedRoute>} />
@@ -42,6 +44,8 @@ const App = () => {
       <Route path='/teacher-dashboard/university-question/add' index element={<TeacherProtectedRoute><TeacherDashboard index={9}/></TeacherProtectedRoute>} />
       <Route path='/teacher-dashboard/student-query' index element={<TeacherProtectedRoute><TeacherDashboard index={10}/></TeacherProtectedRoute>} />
       <Route path='/teacher-dashboard/college-exam' index element={<TeacherProtectedRoute><TeacherDashboard index={11}/></TeacherProtectedRoute>} />
+      <Route path='/teacher-dashboard/college-exam/fetch' index element={<TeacherProtectedRoute><TeacherDashboard index={11}/></TeacherProtectedRoute>} />
+      <Route path='/teacher-dashboard/college-exam/add' index element={<TeacherProtectedRoute><TeacherDashboard index={11}/></TeacherProtectedRoute>} />
       <Route path='/teacher-dashboard/settings' index element={<TeacherProtectedRoute><TeacherDashboard index={12}/></TeacherProtectedRoute>} />
       <Route path='/student-dashboard' index element={<StudentDashboard/>} />
       <Route path='*' index element={<PageNotFound/>} />

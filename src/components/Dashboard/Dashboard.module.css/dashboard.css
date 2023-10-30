@@ -220,7 +220,9 @@ color: var(--text-color--aliceblue);
     width: 26rem;
     padding-block: 0.5em;
 }
-
+.new-material-semester,
+.new-material-course-type,
+.new-material-date,
 .new-material-upload,
 .new-material-topic-name,
 .new-material-paper-name,
@@ -233,7 +235,8 @@ color: var(--text-color--aliceblue);
     /* padding: 0.5em; */
 }
 
-.add-new-material input{
+.add-new-material input,
+.add-new-material select{
     width: 20rem;
     padding: 0.75em 1em;
     border: 0.5px solid var(--light-border);

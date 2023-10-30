@@ -3,17 +3,6 @@ import { useFetch } from '../../Hooks/useFetch';
 
 const TeachingPlan = () => {
 
-  
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    
-    try {
-      const {data} = useFetch('https://jsonplaceholder.typicode.com/users')
-      
-    } catch (error) {
-      
-    }
-  }
 
   return (
     <>

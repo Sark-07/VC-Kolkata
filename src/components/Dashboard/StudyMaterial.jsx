@@ -22,6 +22,7 @@ const StudyMaterial = () => {
     try {
       if (semester && course && paper && topic && file) {
         const formData = new FormData();
+        formData.append('email', JSON.parse(localStorage.getItem('token')).email)
         formData.append('file', file);
         formData.append('semester', semester);
         formData.append('course', course);
@@ -56,6 +57,21 @@ const StudyMaterial = () => {
 
   useEffect(() => {
     if (querySemester && queryCourse) {
+
+      // try {
+
+      //   const payload = {
+      //     email: JSON.parse(localStorage.getItem('token')).email,
+      //     semester: querySemester,
+      //     course: queryCourse
+      //   }  
+      //     //  const {data} = axios.post(url, payload)   
+        
+      // } catch (error) {
+
+      //   console.log(error);
+        
+      // }
       fetch('http://localhost:3000/fetch')
         .then((res) => {
           return res.json();
