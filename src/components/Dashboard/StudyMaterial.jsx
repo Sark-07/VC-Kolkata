@@ -134,7 +134,7 @@ const StudyMaterial = () => {
             <div
               className={`${
                 pathname != '/teacher-dashboard/study-material/fetch' &&
-                'hide-add-new-material'
+                'hide'
               }`}
             >
               <div className={`add-study-material add-new-btn `}>
@@ -191,7 +191,7 @@ const StudyMaterial = () => {
         )}
         <div className={`${
               pathname != '/teacher-dashboard/study-material/edit' &&
-              'hide-add-new-material'
+              'hide'
             }`}>
           <div
             className={`add-material add-new-btn`}
@@ -243,7 +243,7 @@ const StudyMaterial = () => {
         <div
           className={`${
             pathname !== '/teacher-dashboard/study-material/add-material' &&
-            'hide-add-new-material'
+            'hide'
           }`}
         >
           <div className='add-material add-new-btn'>

@@ -6,9 +6,16 @@ import { validateEmail } from '../../utils/validateEmail';
 import './TeacherLogin.css/teacherLogin.css';
 import toast from 'react-hot-toast'
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import {Navigate, useNavigate } from 'react-router-dom';
+import { useAuth } from '../../contexts/AuthContext';
 
 const TeacherLogin = () => {
+  const {login, isAuthenticated} = useAuth()
+  if (isAuthenticated()){
+
+    return <Navigate to={'/'}/>
+
+   }
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -20,7 +27,8 @@ const TeacherLogin = () => {
     loadCaptchaEnginge(4);
   }, []);
 
-  const url = 'http://localhost:3000/tours/api/auth/signin';
+  // const url = 'http://localhost:3000/tours/api/auth/signin';
+  const url = 'http://localhost/vc/TeacherLogin.php';
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -44,14 +52,8 @@ const TeacherLogin = () => {
         const { data } = await axios.post(url, payload);
         if (data.success) {
           toast.success(data.message);
-          setauth({...auth, user: data.user, token: data.token})
-          localStorage.setItem('auth', JSON.stringify({user: data.user, token: data.token}))
-          localStorage.setItem('token', data.token)
-        // toast.success('User Signed In.')
-          // console.log(data.user, data.token, auth);
-         
           setTimeout(() => {
-            //    login({token: data.token, user: data.user}, '/')
+            login({token: data.data.token, email: data.email, role: data.role})
             navigate('/')
           }, 1000);
         }

@@ -10,7 +10,7 @@ const Hero = () => {
     <div className='hero'>
         <div className="hero-left">
             <div className="notice">
-                <h3 className='notice-head'><AiTwotoneNotification/>Notice
+                <h3 className='notice-head'><AiTwotoneNotification/>Instructions
                 </h3>
                 <div className="notice-items">
                     <div className="item">

@@ -2,16 +2,22 @@ import { Navigate } from 'react-router-dom';
 import { useAuth } from './AuthContext';
 import PropTypes from 'prop-types';
 import toast from 'react-hot-toast';
+import { useEffect } from 'react';
 
 export const StudentProtectedRoute = ({ children }) => {
   const { isAuthenticated, checkRole } = useAuth();
 
+  useEffect(() => {
+    if (!isAuthenticated()) {
+      // user is not authenticated
+      toast.error('Please Login!');
+    }
+  }, []);
+  
   if (!isAuthenticated()) {
-    // user is not authenticated
-    toast.error('Please Login!');
-    return <Navigate to='/student-login' />;
+    return <Navigate to='/student-login' replace={true} />;
   } else if (checkRole() === 'teacher') {
-    return <Navigate to={'/'} />;
+    return <Navigate to={'/'} replace={true} />;
   }
   return children;
 };
@@ -19,13 +25,19 @@ export const StudentProtectedRoute = ({ children }) => {
 export const TeacherProtectedRoute = ({ children }) => {
   const { isAuthenticated, checkRole } = useAuth();
 
+  useEffect(() => {
+    if (!isAuthenticated()) {
+      // user is not authenticated
+      toast.error('Please Login!');
+    }
+  }, []);
+
   if (!isAuthenticated()) {
-    // user is not authenticated
-    toast.error('Please Login!');
-    return <Navigate to='/teacher-login' />;
+    return <Navigate to='/teacher-login' replace={true} />;
   } else if (checkRole() === 'student') {
-    return <Navigate to={'/'} />;
+    return <Navigate to={'/'} replace={true} />;
   }
+
   return children;
 };
 

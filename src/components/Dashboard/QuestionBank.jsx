@@ -119,7 +119,7 @@ const QuestionBank = () => {
           <div
           className={`${
             pathname !== '/teacher-dashboard/question-bank/add' &&
-            'hide-add-new-material'
+            'hide'
           }`}
         >
           <div className='add-material add-new-btn'>

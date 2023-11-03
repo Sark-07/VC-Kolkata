@@ -10,7 +10,6 @@ const PPTClass = () => {
   const [course, setCourse] = useState('');
   const [session, setSession] = useState('');
   const [topic, setTopic] = useState('');
-  const [date, setDate] = useState('');
   const [file, setFile] = useState(null);
   const pathname = window.location.pathname;
   const search = useLocation().search;
@@ -190,7 +189,7 @@ const PPTClass = () => {
         <div
           className={`${
             pathname !== '/teacher-dashboard/ppt-class/add' &&
-            'hide-add-new-material'
+            'hide'
           }`}
         >
           <div className='add-material add-new-btn'>

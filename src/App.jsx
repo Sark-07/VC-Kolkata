@@ -17,40 +17,42 @@ const App = () => {
     <BrowserRouter>
     <Routes>
       <Route path='/' index element={<Home/>} />
-      <Route path='/student-login' index element={<StudentLogin/>} />
-      <Route path='/teacher-login' index element={<TeacherLogin/>} />
-      <Route path='/teacher-dashboard' index element={<TeacherProtectedRoute><TeacherDashboard index={0}/></TeacherProtectedRoute>} />
-      <Route path='/teacher-dashboard/student-list' index element={<TeacherProtectedRoute><TeacherDashboard index={1}/></TeacherProtectedRoute>} />
-      <Route path='/teacher-dashboard/study-material' index element={<TeacherProtectedRoute><TeacherDashboard index={2}/></TeacherProtectedRoute>} />
-      <Route path='/teacher-dashboard/study-material/fetch' index element={<TeacherProtectedRoute><TeacherDashboard index={2}/></TeacherProtectedRoute>} />
-      <Route path='/teacher-dashboard/study-material/add-material' index element={<TeacherProtectedRoute><TeacherDashboard index={2}/></TeacherProtectedRoute>} />
-      <Route path='/teacher-dashboard/study-material/edit' index element={<TeacherProtectedRoute><TeacherDashboard index={2}/></TeacherProtectedRoute>} />
-      <Route path='/teacher-dashboard/teaching-plan' index element={<TeacherProtectedRoute><TeacherDashboard index={3}/></TeacherProtectedRoute>} />
-      <Route path='/teacher-dashboard/notification' index element={<TeacherProtectedRoute><TeacherDashboard index={4}/></TeacherProtectedRoute>} />
-      <Route path='/teacher-dashboard/notification/fetch' index element={<TeacherProtectedRoute><TeacherDashboard index={4}/></TeacherProtectedRoute>} />
-      <Route path='/teacher-dashboard/notification/add' index element={<TeacherProtectedRoute><TeacherDashboard index={4}/></TeacherProtectedRoute>} />
-      <Route path='/teacher-dashboard/e-books' index element={<TeacherProtectedRoute><TeacherDashboard index={5}/></TeacherProtectedRoute>} />
-      <Route path='/teacher-dashboard/e-books/add' index element={<TeacherProtectedRoute><TeacherDashboard index={5}/></TeacherProtectedRoute>} />
-      <Route path='/teacher-dashboard/question-bank' index element={<TeacherProtectedRoute><TeacherDashboard index={6}/></TeacherProtectedRoute>} />
-      <Route path='/teacher-dashboard/question-bank/add' index element={<TeacherProtectedRoute><TeacherDashboard index={6}/></TeacherProtectedRoute>} />
-      <Route path='/teacher-dashboard/question-bank/fetch' index element={<TeacherProtectedRoute><TeacherDashboard index={6}/></TeacherProtectedRoute>} />
-      <Route path='/teacher-dashboard/ppt-class' index element={<TeacherProtectedRoute><TeacherDashboard index={7}/></TeacherProtectedRoute>} />
-      <Route path='/teacher-dashboard/ppt-class/fetch' index element={<TeacherProtectedRoute><TeacherDashboard index={7}/></TeacherProtectedRoute>} />
-      <Route path='/teacher-dashboard/ppt-class/add' index element={<TeacherProtectedRoute><TeacherDashboard index={7}/></TeacherProtectedRoute>} />
-      <Route path='/teacher-dashboard/video-lesson' index element={<TeacherProtectedRoute><TeacherDashboard index={8}/></TeacherProtectedRoute>} />
-      <Route path='/teacher-dashboard/video-lesson/fetch' index element={<TeacherProtectedRoute><TeacherDashboard index={8}/></TeacherProtectedRoute>} />
-      <Route path='/teacher-dashboard/video-lesson/add' index element={<TeacherProtectedRoute><TeacherDashboard index={8}/></TeacherProtectedRoute>} />
-      <Route path='/teacher-dashboard/university-question' index element={<TeacherProtectedRoute><TeacherDashboard index={9}/></TeacherProtectedRoute>} />
-      <Route path='/teacher-dashboard/university-question/fetch' index element={<TeacherProtectedRoute><TeacherDashboard index={9}/></TeacherProtectedRoute>} />
-      <Route path='/teacher-dashboard/university-question/add' index element={<TeacherProtectedRoute><TeacherDashboard index={9}/></TeacherProtectedRoute>} />
-      <Route path='/teacher-dashboard/student-query' index element={<TeacherProtectedRoute><TeacherDashboard index={10}/></TeacherProtectedRoute>} />
-      <Route path='/teacher-dashboard/college-exam' index element={<TeacherProtectedRoute><TeacherDashboard index={11}/></TeacherProtectedRoute>} />
-      <Route path='/teacher-dashboard/college-exam/fetch' index element={<TeacherProtectedRoute><TeacherDashboard index={11}/></TeacherProtectedRoute>} />
-      <Route path='/teacher-dashboard/college-exam/add' index element={<TeacherProtectedRoute><TeacherDashboard index={11}/></TeacherProtectedRoute>} />
-      <Route path='/teacher-dashboard/profile' index element={<TeacherProtectedRoute><TeacherDashboard index={12}/></TeacherProtectedRoute>} />
-      <Route path='/student-dashboard' index element={<StudentDashboard/>} />
-      <Route path='*' index element={<PageNotFound/>} />
-      <Route path='/test' index element={<Test/>} />
+      <Route path='/student-login' element={<StudentLogin/>} />
+      <Route path='/teacher-login' element={<TeacherLogin/>} />
+      <Route path='/teacher-dashboard' element={<TeacherProtectedRoute><TeacherDashboard index={0}/></TeacherProtectedRoute>} />
+      <Route path='/teacher-dashboard/student-list' element={<TeacherProtectedRoute><TeacherDashboard index={1}/></TeacherProtectedRoute>} />
+      <Route path='/teacher-dashboard/study-material' element={<TeacherProtectedRoute><TeacherDashboard index={2}/></TeacherProtectedRoute>} />
+      <Route path='/teacher-dashboard/study-material/fetch' element={<TeacherProtectedRoute><TeacherDashboard index={2}/></TeacherProtectedRoute>} />
+      <Route path='/teacher-dashboard/study-material/add-material' element={<TeacherProtectedRoute><TeacherDashboard index={2}/></TeacherProtectedRoute>} />
+      <Route path='/teacher-dashboard/study-material/edit' element={<TeacherProtectedRoute><TeacherDashboard index={2}/></TeacherProtectedRoute>} />
+      <Route path='/teacher-dashboard/teaching-plan' element={<TeacherProtectedRoute><TeacherDashboard index={3}/></TeacherProtectedRoute>} />
+      <Route path='/teacher-dashboard/teaching-plan/fetch' element={<TeacherProtectedRoute><TeacherDashboard index={3}/></TeacherProtectedRoute>} />
+      <Route path='/teacher-dashboard/teaching-plan/add' element={<TeacherProtectedRoute><TeacherDashboard index={3}/></TeacherProtectedRoute>} />
+      <Route path='/teacher-dashboard/notification' element={<TeacherProtectedRoute><TeacherDashboard index={4}/></TeacherProtectedRoute>} />
+      <Route path='/teacher-dashboard/notification/fetch' element={<TeacherProtectedRoute><TeacherDashboard index={4}/></TeacherProtectedRoute>} />
+      <Route path='/teacher-dashboard/notification/add' element={<TeacherProtectedRoute><TeacherDashboard index={4}/></TeacherProtectedRoute>} />
+      <Route path='/teacher-dashboard/e-books' element={<TeacherProtectedRoute><TeacherDashboard index={5}/></TeacherProtectedRoute>} />
+      <Route path='/teacher-dashboard/e-books/add' element={<TeacherProtectedRoute><TeacherDashboard index={5}/></TeacherProtectedRoute>} />
+      <Route path='/teacher-dashboard/question-bank' element={<TeacherProtectedRoute><TeacherDashboard index={6}/></TeacherProtectedRoute>} />
+      <Route path='/teacher-dashboard/question-bank/add' element={<TeacherProtectedRoute><TeacherDashboard index={6}/></TeacherProtectedRoute>} />
+      <Route path='/teacher-dashboard/question-bank/fetch' element={<TeacherProtectedRoute><TeacherDashboard index={6}/></TeacherProtectedRoute>} />
+      <Route path='/teacher-dashboard/ppt-class' element={<TeacherProtectedRoute><TeacherDashboard index={7}/></TeacherProtectedRoute>} />
+      <Route path='/teacher-dashboard/ppt-class/fetch' element={<TeacherProtectedRoute><TeacherDashboard index={7}/></TeacherProtectedRoute>} />
+      <Route path='/teacher-dashboard/ppt-class/add' element={<TeacherProtectedRoute><TeacherDashboard index={7}/></TeacherProtectedRoute>} />
+      <Route path='/teacher-dashboard/video-lesson' element={<TeacherProtectedRoute><TeacherDashboard index={8}/></TeacherProtectedRoute>} />
+      <Route path='/teacher-dashboard/video-lesson/fetch' element={<TeacherProtectedRoute><TeacherDashboard index={8}/></TeacherProtectedRoute>} />
+      <Route path='/teacher-dashboard/video-lesson/add' element={<TeacherProtectedRoute><TeacherDashboard index={8}/></TeacherProtectedRoute>} />
+      <Route path='/teacher-dashboard/university-question' element={<TeacherProtectedRoute><TeacherDashboard index={9}/></TeacherProtectedRoute>} />
+      <Route path='/teacher-dashboard/university-question/fetch' element={<TeacherProtectedRoute><TeacherDashboard index={9}/></TeacherProtectedRoute>} />
+      <Route path='/teacher-dashboard/university-question/add' element={<TeacherProtectedRoute><TeacherDashboard index={9}/></TeacherProtectedRoute>} />
+      <Route path='/teacher-dashboard/student-query' element={<TeacherProtectedRoute><TeacherDashboard index={10}/></TeacherProtectedRoute>} />
+      <Route path='/teacher-dashboard/college-exam' element={<TeacherProtectedRoute><TeacherDashboard index={11}/></TeacherProtectedRoute>} />
+      <Route path='/teacher-dashboard/college-exam/fetch' element={<TeacherProtectedRoute><TeacherDashboard index={11}/></TeacherProtectedRoute>} />
+      <Route path='/teacher-dashboard/college-exam/add' element={<TeacherProtectedRoute><TeacherDashboard index={11}/></TeacherProtectedRoute>} />
+      <Route path='/teacher-dashboard/profile' element={<TeacherProtectedRoute><TeacherDashboard index={12}/></TeacherProtectedRoute>} />
+      <Route path='/student-dashboard' element={<StudentDashboard/>} />
+      <Route path='*' element={<PageNotFound/>} />
+      <Route path='/test' element={<Test/>} />
     </Routes>
     </BrowserRouter>
     <Toaster/>

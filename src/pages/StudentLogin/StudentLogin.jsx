@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import './StudentLogin.css/studentLogin.css';
 import { ReactComponent as Logo } from '../../assets/svg/logo.svg';
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha} from 'react-simple-captcha';
@@ -11,7 +11,8 @@ import toast from 'react-hot-toast'
 
 const StudentLogin = () => {
   const {isAuthenticated, login} = useAuth()
-  console.log(useAuth());
+  const navigate = useNavigate()
+
   if (isAuthenticated()){
 
     return <Navigate to={'/'}/>
@@ -54,8 +55,8 @@ const StudentLogin = () => {
         if (data.success) {
           toast.success(data.message);
           setTimeout(() => {
-            login({token: data.data.token, email: data.email}, '/')
-            
+            login({token: data.data.token, email: data.email, role: data.role})
+            navigate('/')
           }, 1000);
         }else{
           

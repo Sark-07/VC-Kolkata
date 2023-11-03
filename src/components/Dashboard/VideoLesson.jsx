@@ -121,7 +121,7 @@ const VideoLesson = () => {
         <div
           className={`${
             pathname !== '/teacher-dashboard/video-lesson/add' &&
-            'hide-add-new-material'
+            'hide'
           }`}
         >
           <div className='add-material add-new-btn'>

@@ -19,7 +19,7 @@ const Header = () => {
         </div>
         <div className="header-right">
                 <div className='header-right-title'><img src="../../../src/assets/images/Bengali-title.png" alt="Bengali title" /></div>
-                <p className="links"><Link to={'#'}>RTI</Link> | <Link to={'#'}>NIRF</Link> | <Link to={'#'}>N-LIST</Link> | <Link to={'#'}>Important Links</Link> | <Link to={'#'}>Contact Us</Link> | <Link to={'#'}>Web Mail</Link></p>
+                {/* <p className="links"><Link to={'#'}>RTI</Link> | <Link to={'#'}>NIRF</Link> | <Link to={'#'}>N-LIST</Link> | <Link to={'#'}>Important Links</Link> | <Link to={'#'}>Contact Us</Link> | <Link to={'#'}>Web Mail</Link></p> */}
                 <p className="contact"><span className="header-email"><IoMdMail/> vivekananadacollege.org.in</span><span className="header-phone"><BsFillTelephoneFill/> +91-9058765256</span></p>
                 <div className="socials"><BsFacebook/><BsTwitter/><BsYoutube/></div>
 

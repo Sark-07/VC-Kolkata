@@ -10,22 +10,22 @@ const AuthProvider = ({ children }) => {
     JSON.parse(localStorage.getItem('token')) || null
   );
 
-  // console.log(token);
-  const login = (token, linkTo) => {
+  const login = (token) => {
     setToken(token);
     localStorage.setItem('token', JSON.stringify(token));
-    <Navigate to={linkTo} />;
-    // navigate("");
   };
 
   const logout = () => {
     setToken(null);
     localStorage.removeItem('token');
-    <Navigate to='/' replace />;
+    return <Navigate to='/' replace />;
   };
 
   const checkRole = () => {
-    return token.role;
+    if (token) {
+      return token.role;
+    }
+    return ''
   };
 
   const isAuthenticated = () => {
@@ -33,8 +33,7 @@ const AuthProvider = ({ children }) => {
       // If token is not available, the user is not authenticated
       return false;
     }
-   
-    
+
     try {
       const decodedToken = jwtDecode(token.token);
       const currentTime = Date.now() / 1000;
@@ -42,7 +41,7 @@ const AuthProvider = ({ children }) => {
       // Check if the token is expired
       if (decodedToken.exp < currentTime) {
         localStorage.removeItem('token');
-        <Navigate to='/signin' replace />;
+        return <Navigate to='/signin' replace />;
       }
 
       // Token is valid and not expired

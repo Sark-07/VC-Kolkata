@@ -150,7 +150,7 @@ const Notification = () => {
         <div
           className={`${
             pathname !== '/teacher-dashboard/notification/add' &&
-            'hide-add-new-material'
+            'hide'
           }`}
         >
           <div className='add-material add-new-btn'>
@@ -163,7 +163,7 @@ const Notification = () => {
             <div className='add-new-material-container'>
             <div className='common-fields'>
             <label htmlFor='Semester'>
-              Semester<sup>*</sup>
+              Semester
             </label>
             <select
               name='semester'

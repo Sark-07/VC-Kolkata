@@ -185,7 +185,7 @@ const CollegeExam = () => {
         <div
           className={`${
             pathname !== '/teacher-dashboard/college-exam/add' &&
-            'hide-add-new-material'
+            'hide'
           }`}
         >
           <div className='add-material add-new-btn'>

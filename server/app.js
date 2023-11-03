@@ -21,7 +21,7 @@ const upload = multer({ storage });
 app.post('/upload', upload.single('file'), async (req, res) => {
   const { semester, course, paper, topic, email } = req.body;
   const file = req.file;
-  // console.log(req.body);
+  console.log(req.body);
 
   console.log(semester, course, paper, topic, email, "\n", file);
 
