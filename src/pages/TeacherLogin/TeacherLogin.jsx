@@ -46,9 +46,7 @@ const TeacherLogin = () => {
           email: email,
           password: password,
         };
-
-        console.log(payload);
-
+        
         const { data } = await axios.post(url, payload);
         if (data.success) {
           toast.success(data.message);
@@ -56,6 +54,8 @@ const TeacherLogin = () => {
             login({token: data.data.token, email: data.email, role: data.role})
             navigate('/')
           }, 1000);
+        }else{
+          toast.error(data.message)
         }
       }
     } catch (error) {

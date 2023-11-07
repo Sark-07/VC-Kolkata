@@ -37,18 +37,45 @@ const TeachingPlan = () => {
     e.preventDefault();
 
     try {
+      
       if (semester && course && session && department && topic && paper && sectionModule ) {
+        const fields = document.getElementsByClassName('fields')
+        let count = 0
+        let modulesArr = Array.from(fields)
+        let modulesData = []
+        let upper = 4
+        while (count < modulesArr.length) {
+          let modulesObj = {}
+          let index = count
+          while (index < upper) {
+            if (index % 4 == 0){
+              modulesObj.subUnitName = modulesArr[index].value
+            }else if (index % 4 == 1) {
+              modulesObj.code = modulesArr[index].value
+            }else if (index % 4 == 2) {
+              modulesObj.month = modulesArr[index].value
+            }else if (index % 4 == 3) {
+              modulesObj.noOfClasses = modulesArr[index].value
+            }
+            index ++
+          }
+          modulesData.push(modulesObj)
+          upper += 4
+          count += 4
+
+        }
 
         const payload = {
-          semeste: semester,
+          email: JSON.parse(localStorage.getItem('token')).email,
+          semester: semester,
           course: course,
           session: session,
           department: department, 
           topic: topic,
           paper: paper, 
-          sectionModule: sectionModule
+          sectionModule: sectionModule,
+          modulesData: modulesData
         }
-        
         const { data } = await axios.post(url, payload);
         toast.success(data.message);
       } else {
@@ -81,6 +108,7 @@ const TeachingPlan = () => {
         });
     }
   }, [querySemester, queryCourse, querySession, queryDepartment]);
+  
 
   return (
     <>
@@ -319,19 +347,19 @@ const TeachingPlan = () => {
                   modules.map((items, index) => {
 
                     return (
-                      <div className="modules">
+                      <div key={index} className="modules">
                   <div className="sub-unit-name modules-common">
                     <label htmlFor={'Sub Unit Name'}>Sub Unit Name</label>
-                    <input type="text" />
+                    <input className='fields' type="text" />
                   </div>
                   <div className="code modules-common">
                     <label htmlFor={'Code: '}>Code:</label>
-                    <input type="text" value={''}/>
+                    <input className='fields' type="text"/>
                   </div>
                   <div className="month modules-common">
                     <label htmlFor={'Month:'}>Month:</label>
-                    <select>
-                    <option value="" selected="selected"> Select Month</option>
+                    <select className='fields'>
+                    <option value=""> Select Month</option>
                     <option value="January"> January</option>
                     <option value="February"> February</option>
                     <option value="March"> March</option>
@@ -348,7 +376,7 @@ const TeachingPlan = () => {
                   </div>
                   <div className="no-of-classes modules-common">
                     <label htmlFor={'No. of Classes:  '}>No. of Classes: </label>
-                    <input type="text" value={''}/>
+                    <input className='fields' type="text" />
                   </div>
                 </div>
                     )

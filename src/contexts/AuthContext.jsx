@@ -18,14 +18,13 @@ const AuthProvider = ({ children }) => {
   const logout = () => {
     setToken(null);
     localStorage.removeItem('token');
-    return <Navigate to='/' replace />;
   };
 
   const checkRole = () => {
     if (token) {
       return token.role;
     }
-    return ''
+    return '';
   };
 
   const isAuthenticated = () => {

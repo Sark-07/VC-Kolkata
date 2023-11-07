@@ -7,7 +7,7 @@ const Navbar = () => {
   return (
     <div className='navbar'>
         <ul className='menu-left'>
-            <li style={checkRole() === 'teacher' ? {display: 'none'} : {display: 'inline'}}><Link to={''} >Student Dashboard</Link></li>
+            <li style={checkRole() === 'teacher' ? {display: 'none'} : {display: 'inline'}}><Link to={'/student-dashboard'} >Student Dashboard</Link></li>
             <li style={checkRole() === 'student' ? {display: 'none'} : {display: 'inline'}}><Link to={'/teacher-dashboard'} >Teacher Dashboard</Link></li>
             <li><Link to={'https://www.vckolkata63.org/'} >College Website</Link></li>
         </ul>

@@ -1,10 +1,16 @@
-import React from 'react'
-import Dashboard from '../../components/Dashboard/Dashboard'
+import React, {useContext, useEffect} from 'react'
+import StudentDashboardMain from '../../components/Dashboard/StudentDashboardMain'
+import { SidebarContext } from '../../contexts/SidebarContext'
 
-const StudentDashboard = () => {
+const StudentDashboard = ({index}) => {
+
+  const {setOption} = useContext(SidebarContext)
+  useEffect(() => {
+    setOption(index)   
+  }, [index])
   return (
     <>
-    <Dashboard/>
+    <StudentDashboardMain option={index}/>
     </>
   )
 }

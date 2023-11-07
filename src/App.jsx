@@ -1,6 +1,5 @@
 import React from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import './index.css'
 import Home from './pages/Home/Home'
 import Test from './pages/test/test'
 import StudentLogin from './pages/StudentLogin/StudentLogin'
@@ -10,6 +9,7 @@ import TeacherDashboard from './pages/TeacherDashboard/TeacherDashboard'
 import StudentDashboard from './pages/StudentDashboard/StudentDashboard'
 import { StudentProtectedRoute, TeacherProtectedRoute } from './contexts/ProtectedRoute'
 import { Toaster } from 'react-hot-toast'
+import './index.css'
 const App = () => {
   
   return (
@@ -23,7 +23,7 @@ const App = () => {
       <Route path='/teacher-dashboard/student-list' element={<TeacherProtectedRoute><TeacherDashboard index={1}/></TeacherProtectedRoute>} />
       <Route path='/teacher-dashboard/study-material' element={<TeacherProtectedRoute><TeacherDashboard index={2}/></TeacherProtectedRoute>} />
       <Route path='/teacher-dashboard/study-material/fetch' element={<TeacherProtectedRoute><TeacherDashboard index={2}/></TeacherProtectedRoute>} />
-      <Route path='/teacher-dashboard/study-material/add-material' element={<TeacherProtectedRoute><TeacherDashboard index={2}/></TeacherProtectedRoute>} />
+      <Route path='/teacher-dashboard/study-material/add' element={<TeacherProtectedRoute><TeacherDashboard index={2}/></TeacherProtectedRoute>} />
       <Route path='/teacher-dashboard/study-material/edit' element={<TeacherProtectedRoute><TeacherDashboard index={2}/></TeacherProtectedRoute>} />
       <Route path='/teacher-dashboard/teaching-plan' element={<TeacherProtectedRoute><TeacherDashboard index={3}/></TeacherProtectedRoute>} />
       <Route path='/teacher-dashboard/teaching-plan/fetch' element={<TeacherProtectedRoute><TeacherDashboard index={3}/></TeacherProtectedRoute>} />
@@ -50,7 +50,7 @@ const App = () => {
       <Route path='/teacher-dashboard/college-exam/fetch' element={<TeacherProtectedRoute><TeacherDashboard index={11}/></TeacherProtectedRoute>} />
       <Route path='/teacher-dashboard/college-exam/add' element={<TeacherProtectedRoute><TeacherDashboard index={11}/></TeacherProtectedRoute>} />
       <Route path='/teacher-dashboard/profile' element={<TeacherProtectedRoute><TeacherDashboard index={12}/></TeacherProtectedRoute>} />
-      <Route path='/student-dashboard' element={<StudentDashboard/>} />
+      <Route path='/student-dashboard' element={<StudentProtectedRoute><StudentDashboard index={0}/></StudentProtectedRoute>} />
       <Route path='*' element={<PageNotFound/>} />
       <Route path='/test' element={<Test/>} />
     </Routes>

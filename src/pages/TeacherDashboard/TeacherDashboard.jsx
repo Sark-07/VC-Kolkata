@@ -1,6 +1,6 @@
 import React, {useContext, useEffect} from 'react'
-import Dashboard from '../../components/Dashboard/Dashboard'
 import { SidebarContext } from '../../contexts/SidebarContext'
+import TeacherDashboardMain from '../../components/Dashboard/TeacherDashboardMain'
 const TeacherDashboard = ({index}) => {
 
   const {setOption} = useContext(SidebarContext)
@@ -11,7 +11,7 @@ const TeacherDashboard = ({index}) => {
   
   return (
     <>
-    <Dashboard option = {index}/>
+    <TeacherDashboardMain option = {index}/>
     </>
   )
 }

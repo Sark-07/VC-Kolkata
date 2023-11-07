@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import axios from 'axios';
+import StudyMaterialFetch from './TeacherDashboardComponents/StudyMaterialFetch';
+import StudyMaterialEdit from './TeacherDashboardComponents/StudyMaterialEdit';
+import StudyMaterialAdd from './TeacherDashboardComponents/StudyMaterialAdd';
 import toast from 'react-hot-toast';
+import axios from 'axios';
 const url = 'http://localhost:3000/upload';
 const StudyMaterial = () => {
   const navigate = useNavigate();
@@ -22,7 +25,10 @@ const StudyMaterial = () => {
     try {
       if (semester && course && paper && topic && file) {
         const formData = new FormData();
-        formData.append('email', JSON.parse(localStorage.getItem('token')).email)
+        formData.append(
+          'email',
+          JSON.parse(localStorage.getItem('token')).email
+        );
         formData.append('file', file);
         formData.append('semester', semester);
         formData.append('course', course);
@@ -43,34 +49,33 @@ const StudyMaterial = () => {
       console.log(error);
     }
   };
-
+  const handleStudyMaterialEdit = (e) => {};
   const fetchStudyMaterials = async (e) => {
     e.preventDefault();
     if (semester && course) {
       navigate(
         `/teacher-dashboard/study-material/fetch?semester=${semester}&course=${course}`
       );
-    }else {
+    } else {
       toast.error('Please fill up all fields.');
     }
   };
 
   useEffect(() => {
     if (querySemester && queryCourse) {
-
       // try {
 
       //   const payload = {
       //     email: JSON.parse(localStorage.getItem('token')).email,
       //     semester: querySemester,
       //     course: queryCourse
-      //   }  
-      //     //  const {data} = axios.post(url, payload)   
-        
+      //   }
+      //     //  const {data} = axios.post(url, payload)
+
       // } catch (error) {
 
       //   console.log(error);
-        
+
       // }
       fetch('http://localhost:3000/fetch')
         .then((res) => {
@@ -129,168 +134,28 @@ const StudyMaterial = () => {
           </div>
           <button className='form-submit'>Submit</button>
         </form>
-        {studyMaterials ? (
-          <>
-            <div
-              className={`${
-                pathname != '/teacher-dashboard/study-material/fetch' &&
-                'hide'
-              }`}
-            >
-              <div className={`add-study-material add-new-btn `}>
-                <button
-                  onClick={() =>
-                    navigate('/teacher-dashboard/study-material/add-material')
-                  }
-                >
-                  Add New
-                </button>
-              </div>
-              <table>
-                <thead>
-                  <tr>
-                    <th style={{ width: '58px' }}>Sl&nbsp;No</th>
-                    <th>Date</th>
-                    <th>Paper Name</th>
-                    <th>Topic Name</th>
-                    <th>View File</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>28-11-2021</td>
-                    <td>
-                      CMS-A-CC-5-11-TH [Database Management system (DBMS)]
-                    </td>
-                    <td>Introduction [Date: 22.11.2021]</td>
-                    <td>
-                      <a href='https://www.eshikshak.behalacollege.in/uploads/instructional_material/20211128041637676221.pdf'>
-                        Click
-                      </a>
-                    </td>
-                    <td className='actions'>
-                      <button
-                        style={{ marginInline: '0.5em' }}
-                        onClick={() =>
-                          navigate(`/teacher-dashboard/study-material/edit`)
-                        }
-                      >
-                        Edit
-                      </button>
-                      <button>Delete</button>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </>
+        {studyMaterials &&
+        pathname == '/teacher-dashboard/study-material/fetch' ? (
+          <StudyMaterialFetch 
+          navigate={navigate} 
+          />
+        ) : pathname == '/teacher-dashboard/study-material/edit' ? (
+          <StudyMaterialEdit
+            setFile={setFile}
+            setPaper={setPaper}
+            setTopic={setTopic}
+            handleStudyMaterialEdit={handleStudyMaterialEdit}
+          />
+        ) : pathname == '/teacher-dashboard/study-material/add' ? (
+          <StudyMaterialAdd
+            setFile={setFile}
+            setPaper={setPaper}
+            setTopic={setTopic}
+            handleStudyMaterialSubmit={handleStudyMaterialSubmit}
+          />
         ) : (
           <></>
         )}
-        <div className={`${
-              pathname != '/teacher-dashboard/study-material/edit' &&
-              'hide'
-            }`}>
-          <div
-            className={`add-material add-new-btn`}
-          >
-            <button
-              onClick={() =>
-                window.history.back()
-              }
-            >
-             Back
-            </button>
-          </div>
-          <form
-            className={`add-new-material`}
-            onSubmit={(e) => handleStudyMaterialSubmit(e)}
-          >
-            <div className='add-new-material-container'>
-              <div className='common-fields'>
-                <label htmlFor='Paper Name'>Paper Name</label>
-                <input
-                  type='text'
-                  placeholder='Eg: Advance DBMS'
-                  required
-                  onChange={(e) => setPaper(e.target.value)}
-                />
-              </div>
-              <div className='common-fields'>
-                <label htmlFor='Topic Name'>Topic Name</label>
-                <input
-                  type='text'
-                  placeholder='Eg: DBMS'
-                  required
-                  onChange={(e) => setTopic(e.target.value)}
-                />
-              </div>
-              <div className='common-fields'>
-                <label htmlFor='Upload File'>Upload File</label>
-                <input
-                  type='file'
-                  onChange={(e) => {
-                    setFile(e.target.files[0]), console.log(e.target.files[0]);
-                  }}
-                />
-              </div>
-              <button className='add-new-material-btn'>Submit</button>
-            </div>
-          </form>
-        </div>
-        <div
-          className={`${
-            pathname !== '/teacher-dashboard/study-material/add-material' &&
-            'hide'
-          }`}
-        >
-          <div className='add-material add-new-btn'>
-            <button
-              onClick={() =>
-                window.history.back()
-              }
-            >
-              Back
-            </button>
-          </div>
-          <form
-            className='add-new-material'
-            onSubmit={(e) => handleStudyMaterialSubmit(e)}
-          >
-            <div className='add-new-material-container'>
-              <div className='common-fields'>
-                <label htmlFor='Paper Name'>Paper Name</label>
-                <input
-                  type='text'
-                  placeholder='Eg: Advance DBMS'
-                  required
-                  onChange={(e) => setPaper(e.target.value)}
-                />
-              </div>
-              <div className='common-fields'>
-                <label htmlFor='Topic Name'>Topic Name</label>
-                <input
-                  type='text'
-                  placeholder='Eg: DBMS'
-                  required
-                  onChange={(e) => setTopic(e.target.value)}
-                />
-              </div>
-              <div className='common-fields'>
-                <label htmlFor='Upload File'>Upload File</label>
-                <input
-                  type='file'
-                  onChange={(e) => {
-                    setFile(e.target.files[0]), console.log(e.target.files[0]);
-                  }}
-                />
-              </div>
-              <button className='add-new-material-btn'>Add Material</button>
-            </div>
-          </form>
-        </div>
       </div>
     </>
   );

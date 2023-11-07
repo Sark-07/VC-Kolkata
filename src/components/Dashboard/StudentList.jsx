@@ -1,6 +1,4 @@
 import React from 'react';
-import './Dashboard.module.css/dashboardComponents.css'
-
 const StudentList = () => {
 
   const handleSubmit = (e) => {

@@ -47,9 +47,7 @@ const StudentLogin = () => {
           email: email,
           DOB: dob.split("-").reverse().join("-"),
         };
-
-        console.log(payload);
-        
+    
         const { data } = await axios.post(url, payload);
         console.log(data);
         if (data.success) {
