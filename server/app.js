@@ -36,6 +36,9 @@ app.post('/get', async (req, res) => {
 app.get('/fetch', (req, res) => {
   res.status(200).json({success: true, data: [10, 20, 30, 40, 50]})
 })
+app.get('/fetch1', (req, res) => {
+  res.status(200).json({success: true, data: [50, 40]})
+})
 
 app.listen(3000, () => {
   console.log('Server is running on port 3000.');

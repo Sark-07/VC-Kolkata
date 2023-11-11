@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import axios from 'axios';
+import PPTClassAdd from './TeacherDashboardComponents/PPTClassAdd';
+import PPTClassFetch from './TeacherDashboardComponents/PPTClassFetch';
 const url = 'http://localhost:3000/upload';
 
 const PPTClass = () => {
@@ -51,7 +53,7 @@ const PPTClass = () => {
       navigate(
         `/teacher-dashboard/ppt-class/fetch?semester=${semester}&course=${course}&session=${session}`
       );
-    }else {
+    } else {
       toast.error('Please fill up all fields.');
     }
   };
@@ -67,7 +69,7 @@ const PPTClass = () => {
         });
     }
   }, [querySemester, queryCourse, querySession]);
- 
+
   return (
     <>
       <div className='PPT-class common'>
@@ -164,64 +166,16 @@ const PPTClass = () => {
           <button className='form-submit'>Submit</button>
         </form>
         {ppt && pathname == '/teacher-dashboard/ppt-class/fetch' ? (
-          <div>
-            <div className='add-material add-new-btn'>
-              <button
-                onClick={() => navigate('/teacher-dashboard/ppt-class/add')}
-              >
-                Add New
-              </button>
-            </div>
-            <table>
-              <thead>
-                <tr>
-                  <th style={{ width: '58px' }}>Sl No</th>
-                  <th>Unit Name</th>
-                  <th style={{ width: '110p' }}>PPT File</th>
-                  <th style={{ width: '200p' }}>Action</th>
-                </tr>
-              </thead>
-            </table>
-          </div>
+          <PPTClassFetch navigate={navigate} />
+        ) : pathname == '/teacher-dashboard/ppt-class/add' ? (
+          <PPTClassAdd
+            setFile={setFile}
+            setTopic={setTopic}
+            handlePPTSubmit={handlePPTSubmit}
+          />
         ) : (
           <></>
         )}
-        <div
-          className={`${
-            pathname !== '/teacher-dashboard/ppt-class/add' &&
-            'hide'
-          }`}
-        >
-          <div className='add-material add-new-btn'>
-            <button onClick={() => window.history.back()}>Back</button>
-          </div>
-          <form
-            className='add-new-material'
-            onSubmit={(e) => handlePPTSubmit(e)}
-          >
-            <div className='add-new-material-container'>
-              <div className='common-fields'>
-                <label htmlFor='Topic Name'>Topic Name</label>
-                <input
-                  type='text'
-                  placeholder='Eg: DBMS'
-                  required
-                  onChange={(e) => setTopic(e.target.value)}
-                />
-              </div>
-              <div className='common-fields'>
-                <label htmlFor='Upload File'>Upload File</label>
-                <input
-                  type='file'
-                  onChange={(e) => {
-                    setFile(e.target.files[0]), console.log(e.target.files[0]);
-                  }}
-                />
-              </div>
-              <button className='add-new-material-btn'>Add Document</button>
-            </div>
-          </form>
-        </div>
       </div>
     </>
   );

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import axios from 'axios';
+import UniversityQuestionAdd from './TeacherDashboardComponents/UniversityQuestionAdd';
 const url = 'http://localhost:3000/upload';
 
 const UniversityQuestion = () => {
@@ -193,46 +194,11 @@ const UniversityQuestion = () => {
                 </thead>
             </table>  
           </div>
-        ) : (
+        ) : pathname == '/teacher-dashboard/university-question/add' ? (
+          <UniversityQuestionAdd setFile={setFile} setPaper={setPaper} handleUnivQuestionSubmit={handleUnivQuestionSubmit}/>
+        ) :(
           <></>
         )}
-		  
-		  <div
-          className={`${
-            pathname !== '/teacher-dashboard/university-question/add' &&
-            'hide'
-          }`}
-        >
-          <div className='add-material add-new-btn'>
-            <button onClick={() => window.history.back()}>Back</button>
-          </div>
-          <form
-            className='add-new-material'
-            onSubmit={(e) => handleUnivQuestionSubmit(e)}
-          >
-            <div className='add-new-material-container'>
-              <div className='common-fields'>
-                <label htmlFor='Paper Name'>Paper Name</label>
-                <input
-                  type='text'
-                  placeholder='Eg: DBMS'
-                  required
-                  onChange={(e) => setPaper(e.target.value)}
-                />
-              </div>
-              <div className='common-fields'>
-                <label htmlFor='Upload File'>Upload File</label>
-                <input
-                  type='file'
-                  onChange={(e) => {
-                    setFile(e.target.files[0]), console.log(e.target.files[0]);
-                  }}
-                />
-              </div>
-              <button className='add-new-material-btn'>Add Question</button>
-            </div>
-          </form>
-        </div>
     </div>
     </>
   )

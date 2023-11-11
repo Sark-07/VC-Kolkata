@@ -17,7 +17,7 @@ import Profile from './Profile';
 import './Dashboard.module.css/dashboard.css';
 import QueryToTeacher from './QueryToTeacher';
 
-const TeacherDashboardMain = ({option}) => {
+const DashboardMain = ({option}) => {
 
   return (
     <div className='dashboard'>
@@ -34,4 +34,4 @@ const TeacherDashboardMain = ({option}) => {
   );
 };
 
-export default TeacherDashboardMain;
+export default DashboardMain;
