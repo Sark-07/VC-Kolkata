@@ -22,7 +22,7 @@ const StudentDashboardMain = ({option}) => {
           <div className='dashboard-right'>
             <DashboardRightHeader />
             {
-              option == 0 ? <Overview/> : option == 1 ? <StudyMaterial/> : option == 2 ? <TeachingPlan/> : option == 3 ? <Notification/> : option == 4 ? <Ebook/> : option == 5 ? <QuestionBank/> : option == 6 ? <PPTClass/> : option == 7 ? <VideoLesson/> : option == 8 ? <UniversityQuestion/> : option == 9 ? <StudentQuery/> : option == 10 ? <CollegeExam/> : <></>
+              option == 0 ? <Overview/> : option == 2 ? <StudyMaterial/> : option == 3 ? <TeachingPlan/> : option == 4 ? <Notification/> : option == 5 ? <Ebook/> : option == 6 ? <QuestionBank/> : option == 7 ? <PPTClass/> : option == 8 ? <VideoLesson/> : option == 9 ? <UniversityQuestion/> : option == 10 ? <StudentQuery/> : option == 11 ? <CollegeExam/> : <></>
             }
           </div>
         </div>

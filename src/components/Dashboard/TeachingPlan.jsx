@@ -2,12 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import axios from 'axios';
+import TeachingPlanFetch from './TeacherDashboardComponents/TeachingPlanFetch';
+import TeachingPlanAdd from './TeacherDashboardComponents/TeachingPlanAdd';
 const url = 'http://localhost:3000/upload';
 
 const TeachingPlan = () => {
-
-  
-
   const navigate = useNavigate();
   const [semester, setSemester] = useState('');
   const [course, setCourse] = useState('');
@@ -25,11 +24,10 @@ const TeachingPlan = () => {
   const queryDepartment = new URLSearchParams(search).get('department');
   const [teachigPlan, setTeachingPlan] = useState(null);
 
-  let modules = []
-  if (subUnit !== ''){
-
+  let modules = [];
+  if (subUnit !== '') {
     for (let index = 0; index < Number(subUnit); index++) {
-      modules.push(index)
+      modules.push(index);
     }
   }
 
@@ -37,32 +35,38 @@ const TeachingPlan = () => {
     e.preventDefault();
 
     try {
-      
-      if (semester && course && session && department && topic && paper && sectionModule ) {
-        const fields = document.getElementsByClassName('fields')
-        let count = 0
-        let modulesArr = Array.from(fields)
-        let modulesData = []
-        let upper = 4
+      if (
+        semester &&
+        course &&
+        session &&
+        department &&
+        topic &&
+        paper &&
+        sectionModule
+      ) {
+        const fields = document.getElementsByClassName('fields');
+        let count = 0;
+        let modulesArr = Array.from(fields);
+        let modulesData = [];
+        let upper = 4;
         while (count < modulesArr.length) {
-          let modulesObj = {}
-          let index = count
+          let modulesObj = {};
+          let index = count;
           while (index < upper) {
-            if (index % 4 == 0){
-              modulesObj.subUnitName = modulesArr[index].value
-            }else if (index % 4 == 1) {
-              modulesObj.code = modulesArr[index].value
-            }else if (index % 4 == 2) {
-              modulesObj.month = modulesArr[index].value
-            }else if (index % 4 == 3) {
-              modulesObj.noOfClasses = modulesArr[index].value
+            if (index % 4 == 0) {
+              modulesObj.subUnitName = modulesArr[index].value;
+            } else if (index % 4 == 1) {
+              modulesObj.code = modulesArr[index].value;
+            } else if (index % 4 == 2) {
+              modulesObj.month = modulesArr[index].value;
+            } else if (index % 4 == 3) {
+              modulesObj.noOfClasses = modulesArr[index].value;
             }
-            index ++
+            index++;
           }
-          modulesData.push(modulesObj)
-          upper += 4
-          count += 4
-
+          modulesData.push(modulesObj);
+          upper += 4;
+          count += 4;
         }
 
         const payload = {
@@ -70,12 +74,12 @@ const TeachingPlan = () => {
           semester: semester,
           course: course,
           session: session,
-          department: department, 
+          department: department,
           topic: topic,
-          paper: paper, 
+          paper: paper,
           sectionModule: sectionModule,
-          modulesData: modulesData
-        }
+          modulesData: modulesData,
+        };
         const { data } = await axios.post(url, payload);
         toast.success(data.message);
       } else {
@@ -108,14 +112,15 @@ const TeachingPlan = () => {
         });
     }
   }, [querySemester, queryCourse, querySession, queryDepartment]);
-  
 
   return (
     <>
       <div className='teaching-plan common'>
         <h1>Teaching Plan</h1>
         <form
-          className='teaching-plan-form common-form' onSubmit={(e) => fetchTeachingPlan(e)}>
+          className='teaching-plan-form common-form'
+          onSubmit={(e) => fetchTeachingPlan(e)}
+        >
           <div className='session'>
             <label htmlFor='Session'>
               Session<sup>*</sup>
@@ -241,153 +246,12 @@ const TeachingPlan = () => {
           <button className='form-submit'>Submit</button>
         </form>
         {teachigPlan && pathname == '/teacher-dashboard/teaching-plan/fetch' ? (
-          <div>
-            <div className='add-material add-new-btn'>
-              <button
-                onClick={() => navigate('/teacher-dashboard/teaching-plan/add')}
-              >
-                Add New
-              </button>
-            </div>
-
-            <table>
-              <thead>
-                <tr>
-                  <th style={{ width: '50px' }}>Sl No</th>
-                  <th style={{ width: '200px' }}>Paper</th>
-                  <th style={{ width: '60px' }}>Section</th>
-                  <th style={{ width: '180px' }}>Unit Name</th>
-                  <th style={{ width: '80px' }}>View Topic</th>
-                  <th style={{ width: '150px' }}>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Computer Organization &amp; Architecture</td>
-                  <td>CC-5</td>
-                  <td>Computer Organization &amp; Architecture</td>
-                  <td>
-                    <a href='#'>Click</a>
-                  </td>
-                  <td className='actions'>
-                    <button style={{ marginInline: '0.5em' }}>Edit</button>
-                    <button>Delete</button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          <TeachingPlanFetch navigate={navigate} />
+        ) : pathname == '/teacher-dashboard/teaching-plan/add' ? (
+          <TeachingPlanAdd setPaper={setPaper} setSectionModule={setSectionModule} setTopic={setTopic} setSubUnit={setSubUnit} modules={modules} handleTeachingPlanSubmit={handleTeachingPlanSubmit} subUnit={subUnit}/>
         ) : (
           <></>
         )}
-
-        <div
-          className={`${
-            pathname !== '/teacher-dashboard/teaching-plan/add' &&
-            'hide'
-          }`}
-        >
-          <div className='add-material add-new-btn'>
-            <button onClick={() => window.history.back()}>Back</button>
-          </div>
-          <form
-            className='add-new-material'>
-            <div className='add-new-material-container'>
-              <div className='common-fields'>
-                <label htmlFor='Paper'>Paper</label>
-                <input
-                  type='text'
-                  placeholder='Eg: DBMS'
-                  required
-                  onChange={(e) => setPaper(e.target.value)}
-                />
-              </div>
-              <div className='common-fields'>
-                <label htmlFor='Section/Module'>Section/Module</label>
-                <input
-                  type='text'
-                  placeholder=''
-                  required
-                  onChange={(e) => setSectionModule(e.target.value)}
-                />
-              </div>
-              <div className='common-fields'>
-                <label htmlFor='Topic Name'>Topic Name</label>
-                <input
-                  type='text'
-                  placeholder='Eg: Transaction'
-                  required
-                  onChange={(e) => setTopic(e.target.value)}
-                />
-              </div>
-              <div className='common-fields'>
-                <label htmlFor='No. of Sub Unit'>No. of Sub Unit</label>
-                <select
-                  required=''
-                  onChange={(e) => setSubUnit(e.target.value)}
-                >
-                  <option value='1'>1</option>
-                  <option value='2'>2</option>
-                  <option value='3'>3</option>
-                  <option value='4'>4</option>
-                  <option value='5'>5</option>
-                  <option value='6'>6</option>
-                  <option value='7'>7</option>
-                  <option value='8'>8</option>
-                  <option value='9'>9</option>
-                  <option value='10'>10</option>
-                </select>
-              </div>
-            </div>
-          </form>
-          <div className={`${subUnit === "" && 'hide'} teaching-plan-modules`}>
-                
-                {
-                  modules.map((items, index) => {
-
-                    return (
-                      <div key={index} className="modules">
-                  <div className="sub-unit-name modules-common">
-                    <label htmlFor={'Sub Unit Name'}>Sub Unit Name</label>
-                    <input className='fields' type="text" />
-                  </div>
-                  <div className="code modules-common">
-                    <label htmlFor={'Code: '}>Code:</label>
-                    <input className='fields' type="text"/>
-                  </div>
-                  <div className="month modules-common">
-                    <label htmlFor={'Month:'}>Month:</label>
-                    <select className='fields'>
-                    <option value=""> Select Month</option>
-                    <option value="January"> January</option>
-                    <option value="February"> February</option>
-                    <option value="March"> March</option>
-                    <option value="April"> April</option>
-                    <option value="May">May</option>
-                    <option value="june"> June</option>
-                    <option value="July"> July</option>
-                    <option value="August"> August</option>
-                    <option value="September"> September</option>
-                    <option value="October"> October</option>
-                    <option value="November"> November</option>
-                    <option value="December"> December</option>
-                    </select>
-                  </div>
-                  <div className="no-of-classes modules-common">
-                    <label htmlFor={'No. of Classes:  '}>No. of Classes: </label>
-                    <input className='fields' type="text" />
-                  </div>
-                </div>
-                    )
-                  })
-                }
-
-              </div>
-              <div style={{width: '100%', textAlign: 'center', marginBlockEnd: '2em'}}>
-              <button className='add-new-material-btn' onClick={(e) => handleTeachingPlanSubmit(e)}>Add Plan</button>
-              </div>
-        </div>
       </div>
     </>
   );

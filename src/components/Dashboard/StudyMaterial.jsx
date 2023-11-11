@@ -18,6 +18,7 @@ const StudyMaterial = () => {
   const search = useLocation().search;
   const querySemester = new URLSearchParams(search).get('semester');
   const queryCourse = new URLSearchParams(search).get('course');
+  const baseUrl = pathname.split('/')[1]
 
   const handleStudyMaterialSubmit = async (e) => {
     e.preventDefault();
@@ -54,7 +55,7 @@ const StudyMaterial = () => {
     e.preventDefault();
     if (semester && course) {
       navigate(
-        `/teacher-dashboard/study-material/fetch?semester=${semester}&course=${course}`
+        `/${baseUrl}/study-material/fetch?semester=${semester}&course=${course}`
       );
     } else {
       toast.error('Please fill up all fields.');
@@ -135,7 +136,7 @@ const StudyMaterial = () => {
           <button className='form-submit'>Submit</button>
         </form>
         {studyMaterials &&
-        pathname == '/teacher-dashboard/study-material/fetch' ? (
+        pathname == `/teacher-dashboard/study-material/fetch` ? (
           <StudyMaterialFetch 
           navigate={navigate} 
           />

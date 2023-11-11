@@ -51,6 +51,27 @@ const App = () => {
       <Route path='/teacher-dashboard/college-exam/add' element={<TeacherProtectedRoute><TeacherDashboard index={11}/></TeacherProtectedRoute>} />
       <Route path='/teacher-dashboard/profile' element={<TeacherProtectedRoute><TeacherDashboard index={12}/></TeacherProtectedRoute>} />
       <Route path='/student-dashboard' element={<StudentProtectedRoute><StudentDashboard index={0}/></StudentProtectedRoute>} />
+      <Route path='/student-dashboard/study-material' element={<StudentProtectedRoute><StudentDashboard index={2}/></StudentProtectedRoute>} />
+      <Route path='/student-dashboard/study-material/fetch' element={<StudentProtectedRoute><StudentDashboard index={2}/></StudentProtectedRoute>} />
+      <Route path='/student-dashboard/teaching-plan' element={<StudentProtectedRoute><StudentDashboard index={3}/></StudentProtectedRoute>} />
+      <Route path='/student-dashboard/teaching-plan/fetch' element={<StudentProtectedRoute><StudentDashboard index={3}/></StudentProtectedRoute>} />
+      <Route path='/student-dashboard/notification' element={<StudentProtectedRoute><StudentDashboard index={4}/></StudentProtectedRoute>} />
+      <Route path='/student-dashboard/notification/fetch' element={<StudentProtectedRoute><StudentDashboard index={4}/></StudentProtectedRoute>} />
+      <Route path='/student-dashboard/e-books' element={<StudentProtectedRoute><StudentDashboard index={5}/></StudentProtectedRoute>} />
+      <Route path='/student-dashboard/e-books/fetch' element={<StudentProtectedRoute><StudentDashboard index={5}/></StudentProtectedRoute>} />
+      <Route path='/student-dashboard/question-bank' element={<StudentProtectedRoute><StudentDashboard index={6}/></StudentProtectedRoute>} />
+      <Route path='/student-dashboard/question-bank/fetch' element={<StudentProtectedRoute><StudentDashboard index={6}/></StudentProtectedRoute>} />
+      <Route path='/student-dashboard/ppt-class' element={<StudentProtectedRoute><StudentDashboard index={7}/></StudentProtectedRoute>} />
+      <Route path='/student-dashboard/ppt-class/fetch' element={<StudentProtectedRoute><StudentDashboard index={7}/></StudentProtectedRoute>} />
+      <Route path='/student-dashboard/video-lesson' element={<StudentProtectedRoute><StudentDashboard index={8}/></StudentProtectedRoute>} />
+      <Route path='/student-dashboard/video-lesson/fetch' element={<StudentProtectedRoute><StudentDashboard index={8}/></StudentProtectedRoute>} />
+      <Route path='/student-dashboard/university-question' element={<StudentProtectedRoute><StudentDashboard index={9}/></StudentProtectedRoute>} />
+      <Route path='/student-dashboard/university-question/fetch' element={<StudentProtectedRoute><StudentDashboard index={9}/></StudentProtectedRoute>} />
+      <Route path='/student-dashboard/student-query' element={<StudentProtectedRoute><StudentDashboard index={10}/></StudentProtectedRoute>} />
+      <Route path='/student-dashboard/student-query/fetch' element={<StudentProtectedRoute><StudentDashboard index={10}/></StudentProtectedRoute>} />
+      <Route path='/student-dashboard/college-exam' element={<StudentProtectedRoute><StudentDashboard index={11}/></StudentProtectedRoute>} />
+      <Route path='/student-dashboard/college-exam/fetch' element={<StudentProtectedRoute><StudentDashboard index={11}/></StudentProtectedRoute>} />
+      <Route path='/student-dashboard/query-to-teacher' element={<StudentProtectedRoute><StudentDashboard index={13}/></StudentProtectedRoute>} />
       <Route path='*' element={<PageNotFound/>} />
       <Route path='/test' element={<Test/>} />
     </Routes>

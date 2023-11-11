@@ -28,6 +28,11 @@ app.post('/upload', upload.single('file'), async (req, res) => {
   res.status(201).json({success: true, message: 'File uploaded successfully.'});
 });
 
+app.post('/get', async (req, res) => {
+  const {course, teacherName, file} = req.body
+  console.log(course, teacherName, file)
+})
+
 app.get('/fetch', (req, res) => {
   res.status(200).json({success: true, data: [10, 20, 30, 40, 50]})
 })

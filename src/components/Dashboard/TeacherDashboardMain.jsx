@@ -15,10 +15,9 @@ import CollegeExam from './CollegeExam';
 import Ebook from './Ebook';
 import Profile from './Profile';
 import './Dashboard.module.css/dashboard.css';
+import QueryToTeacher from './QueryToTeacher';
 
 const TeacherDashboardMain = ({option}) => {
-
-  // const {option} = useContext(SidebarContext)
 
   return (
     <div className='dashboard'>
@@ -28,7 +27,7 @@ const TeacherDashboardMain = ({option}) => {
       <div className='dashboard-right'>
         <DashboardRightHeader />
         {
-          option == 0 ? <Overview/> : option == 1 ? <StudentList/> : option == 2 ? <StudyMaterial/> : option == 3 ? <TeachingPlan/> : option == 4 ? <Notification/> : option == 5 ? <Ebook/> : option == 6 ? <QuestionBank/> : option == 7 ? <PPTClass/> : option == 8 ? <VideoLesson/> : option == 9 ? <UniversityQuestion/> : option == 10 ? <StudentQuery/> : option == 11 ? <CollegeExam/> : option == 12 ? <Profile/> : <></>
+          option == 0 ? <Overview/> : option == 1 ? <StudentList/> : option == 2 ? <StudyMaterial/> : option == 3 ? <TeachingPlan/> : option == 4 ? <Notification/> : option == 5 ? <Ebook/> : option == 6 ? <QuestionBank/> : option == 7 ? <PPTClass/> : option == 8 ? <VideoLesson/> : option == 9 ? <UniversityQuestion/> : option == 10 ? <StudentQuery/> : option == 11 ? <CollegeExam/> : option == 12 ? <Profile/> : option == 13 ? <QueryToTeacher/> : <></>
         }
       </div>
     </div>
