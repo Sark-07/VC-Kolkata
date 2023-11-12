@@ -14,8 +14,8 @@ import StudentQuery from './StudentQuery';
 import CollegeExam from './CollegeExam';
 import Ebook from './Ebook';
 import Profile from './Profile';
-import './Dashboard.module.css/dashboard.css';
 import QueryToTeacher from './QueryToTeacher';
+import './Dashboard.module.css/dashboard.css';
 
 const DashboardMain = ({option}) => {
 

@@ -1,18 +1,18 @@
-.dashboard{
+.dashboard {
     background-color: var(--text-color--aliceblue);
     display: grid;
     grid-template-columns: 16rem 1fr;
     grid-template-rows: minmax(100vh, max-content);
 }
 
-.dashboard-left{
+.dashboard-left {
     background-color: #1c2536;
 }
 
 
 /* left-container head */
 
-.Dashboard-left-title{
+.Dashboard-left-title {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -24,7 +24,7 @@
     padding-block: 0.25em 1em;
 }
 
-.dashboard-logo{
+.dashboard-logo {
     /* padding: 0 0.5em; */
     font-size: 2.35rem;
     display: flex;
@@ -33,23 +33,24 @@
     align-items: center;
     color: var(--text-color--aliceblue);
 }
-.dashboard-logo > h6{
+
+.dashboard-logo>h6 {
     font-size: 2rem;
     text-align: center;
 }
 
-.dashboard-logo:hover{
-color: var(--text-color--aliceblue);
+.dashboard-logo:hover {
+    color: var(--text-color--aliceblue);
 }
 
-.logo-icon{
+.logo-icon {
     width: 5rem;
     margin-bottom: -0.25em;
 }
 
 
 /* Items */
-.dashboard-items-container{
+.dashboard-items-container {
     width: 100%;
     padding: 1em;
     display: flex;
@@ -59,11 +60,12 @@ color: var(--text-color--aliceblue);
     height: max-content;
 }
 
-.dashboard-items-container > li{
+.dashboard-items-container>li {
     width: 100%;
     border-radius: 8px;
 }
-.dashboard-items-container > li > a{
+
+.dashboard-items-container>li>a {
     padding: 0.5em 1em;
     cursor: pointer;
     text-decoration: none;
@@ -74,18 +76,20 @@ color: var(--text-color--aliceblue);
     gap: 1em;
 }
 
-.active-bg{
+.active-bg {
     background-color: rgba(255, 255, 255, 0.04);
 }
-.dashboard-items-container > li:hover{
+
+.dashboard-items-container>li:hover {
     color: var(--text-color--aliceblue);
     background-color: rgba(255, 255, 255, 0.04);
 }
 
-.dashboard-items-container > li > svg{
+.dashboard-items-container>li>svg {
     font-size: 1.2rem;
 }
-.dashboard-items-container > li:hover svg{
+
+.dashboard-items-container>li:hover svg {
     color: #6366f1;
     font: 2rem;
 }
@@ -96,7 +100,7 @@ color: var(--text-color--aliceblue);
     padding-block-end: 2em;
 } */
 
-.dashboard-right-header{
+.dashboard-right-header {
     background-color: rgba(221, 228, 251, 0.2);
     display: flex;
     height: 8vh;
@@ -106,16 +110,18 @@ color: var(--text-color--aliceblue);
     border-bottom: 1px solid var(--light-border);
 }
 
-.notificatin-DP{
+.notificatin-DP {
     display: flex;
     gap: 1em;
     align-items: center;
+    position: relative;
 }
 
-.bell{
+.bell {
     margin-top: 8px;
 }
-.DP{
+
+.DP {
     width: 2.5rem;
     height: 2.5rem;
     aspect-ratio: 1;
@@ -125,25 +131,38 @@ color: var(--text-color--aliceblue);
     transition: scale 200ms ease;
 }
 
-.DP:hover{
+.notificatin-DP > .logout {
+    cursor: pointer;
+    padding: 0.5em 1em;
+    background-color: white;
+    border-radius: 4px;
+    font-weight: 600;
+    position: absolute;
+    top: 2.5em;
+    left: 0em;
+}
+
+.DP:hover {
     scale: 1.05;
 }
 
-.dashboard-right-header svg{
+.dashboard-right-header svg {
     font-size: 1.5rem;
     color: #6366f1;
     cursor: pointer;
 }
 
-.common{
+.common {
     width: 100%;
     padding: 0 2em;
 }
-.common > h1{
+
+.common>h1 {
     padding-block: 0.25em;
     border-bottom: 0.5px solid var(--light-border);
 }
-.common-form{
+
+.common-form {
     width: 100%;
     display: flex;
     align-items: center;
@@ -152,15 +171,18 @@ color: var(--text-color--aliceblue);
     padding-block: 1em;
     border-bottom: 0.5px solid var(--light-border);
 }
-.student-list-form{
+
+.student-list-form {
     justify-content: space-between;
     align-items: flex-end;
 }
-.common-form label{
+
+.common-form label {
     font-weight: 600;
     font-size: 0.9rem;
 }
-.common-form select{
+
+.common-form select {
     padding: 0.75em 1em;
     border: 0.5px solid var(--light-border);
     border-radius: 4px;
@@ -169,7 +191,7 @@ color: var(--text-color--aliceblue);
 
 
 /* Teaching plan */
-.teaching-plan-modules{
+.teaching-plan-modules {
     margin-top: 0.5em;
     padding-block: 1em;
     border-top: 0.5px solid var(--light-border);
@@ -180,7 +202,7 @@ color: var(--text-color--aliceblue);
     gap: 1em;
 }
 
-.modules{
+.modules {
     width: 100%;
     display: flex;
     justify-content: center;
@@ -188,13 +210,14 @@ color: var(--text-color--aliceblue);
     gap: 1em;
 }
 
-.modules-common{
+.modules-common {
     display: flex;
     align-items: center;
     gap: 0.5em;
 }
+
 .modules-common input,
-.modules-common select{
+.modules-common select {
     width: fit-content;
     padding: 0.75em 1em;
     border: 0.5px solid var(--light-border);
@@ -208,7 +231,7 @@ color: var(--text-color--aliceblue);
 
 
 /* Profile */
-.profile-layout{
+.profile-layout {
     display: grid;
     grid-template-columns: 40% calc(60% - 2em);
     grid-auto-rows: 100%;
@@ -216,27 +239,29 @@ color: var(--text-color--aliceblue);
     gap: 2em;
 }
 
-.profile-layout > .overview{
-display: flex;
-flex-direction: column;
-gap: 0.25em;
+.profile-layout>.overview {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25em;
 }
-.dp{
+
+.dp {
     border-radius: 4px;
     overflow: hidden;
     width: 10rem;
     height: 12rem;
 }
 
-.profile-layout > .profile-edit > nav{
-width: 100%;
-display: flex;
-gap: 1em;
-align-items: center;
-/* justify-content: center; */
-height: fit-content;
+.profile-layout>.profile-edit>nav {
+    width: 100%;
+    display: flex;
+    gap: 1em;
+    align-items: center;
+    /* justify-content: center; */
+    height: fit-content;
 }
-.profile-layout > .profile-edit > nav > span{ 
+
+.profile-layout>.profile-edit>nav>span {
     cursor: pointer;
     padding-block-end: 0.15em;
     font-weight: 600;
@@ -244,39 +269,44 @@ height: fit-content;
 
 }
 
-.edit, .photo-profile-upload, .change-password{
+.edit,
+.photo-profile-upload,
+.change-password {
     width: 28rem;
     padding-block: 1em;
     display: flex;
     flex-direction: column;
     gap: .75em;
 }
-.view-proflie-logout-btn{
+
+.view-proflie-logout-btn {
     padding-block: 0.5em;
     display: flex;
     gap: 1em;
 }
+
 /* *********end********** */
 
 .session,
 .semester,
 .course-type,
-.department{
+.department {
     display: flex;
     align-items: center;
     gap: 0.75em;
 }
 
-.common button{
+.common button {
     background-color: var(--primary-color);
     font-size: 0.9rem;
 }
-.add-new-btn{
+
+.add-new-btn {
     padding-block: 0.5em;
 }
 
 
-.stats{
+.stats {
     width: 100%;
     height: fit-content;
     padding: 1em 2em;
@@ -285,14 +315,15 @@ height: fit-content;
     grid-template-columns: repeat(2, 1fr);
     grid-auto-rows: 20rem;
 }
-.stat-elements{
+
+.stat-elements {
     width: 100%;
 }
 
 /* ****************************Common needed********************************* */
 
 /* New Material upload */
-.add-new-material{
+.add-new-material {
     width: 100%;
     border-top: 0.5px solid var(--light-border);
     display: grid;
@@ -300,25 +331,27 @@ height: fit-content;
 
 }
 
-.add-new-material-container{
+.add-new-material-container {
     display: flex;
     flex-direction: column;
     gap: 1em;
     width: 28rem;
     padding-block: 0.5em;
 }
+
 .common-fields,
-.new-material-add-date{
+.new-material-add-date {
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
     /* padding: 0.5em; */
 }
+
 .profile-layout input,
 .add-new-material input,
 .add-new-material select,
-.add-new-material textarea{
+.add-new-material textarea {
     width: 20rem;
     padding: 0.75em 1em;
     border: 0.5px solid var(--light-border);
@@ -327,33 +360,39 @@ height: fit-content;
     background-color: white;
 }
 
-.add-new-material-btn{
+.add-new-material-btn {
     width: fit-content;
 }
 
-.hide{
-display: none;
+.hide {
+    display: none;
 }
 
 
 /* Dashboard Component's css */
-.common table, th, td {
+.common table,
+th,
+td {
     border: 1px solid var(--light-border);
     text-align: center;
 }
-.common th, td{
+
+.common th,
+td {
     padding-block: 0.5em;
 }
-.common td{
+
+.common td {
     font-size: 0.9rem;
 }
-.common table{
+
+.common table {
     border-collapse: collapse;
     /* margin-top: 2em; */
     width: 100%;
 }
 
-.common table .actions{
+.common table .actions {
     border: none;
     display: flex;
     flex-wrap: wrap;
@@ -362,50 +401,52 @@ display: none;
     align-items: center;
 }
 
-.common table button{
+.common table button {
     font-size: 0.8rem;
 }
 
 
-.student-info{
+.student-info {
     border: none;
     display: flex;
     align-items: center;
-    padding-inline: 1em ;
-    gap: 1em;    
+    padding-inline: 1em;
+    gap: 1em;
 }
 
-.student-info > .display-picture{
+.student-info>.display-picture {
     width: 3rem;
     height: 3.5rem;
     border-radius: 4px;
     overflow: hidden;
 }
 
-.student-info > .name-email{
+.student-info>.name-email {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 0.25em;
 }
 
-.student-info > .name-email > p{
+.student-info>.name-email>p {
     font-weight: 600;
     color: #00000eb8;
 }
 
-.student-list-form > .search, .entries,
-.e-book > .search{
+.student-list-form>.search,
+.entries,
+.e-book>.search {
     display: flex;
     /* flex-direction: column; */
     align-items: center;
     gap: 0.75em;
 }
-.student-list-form  input[type='search'], input[type='number'],
-.e-book  input[type='search']{
+
+.student-list-form input[type='search'],
+input[type='number'],
+.e-book input[type='search'] {
     padding: 0.75em 1em;
     border: 0.5px solid var(--light-border);
     border-radius: 4px;
     outline: none;
 }
-

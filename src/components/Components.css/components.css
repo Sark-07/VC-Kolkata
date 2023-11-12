@@ -121,3 +121,151 @@
     color: var(--text-color--aliceblue);
     background-color: var(--bg-footer);
 }
+
+
+/* Login */
+label{
+    font-size: 0.9rem;
+}
+
+.sign-in {
+    width: 100%;
+    height: 100vh;
+    background-color: aliceblue;
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+}
+
+.sign-in>.right {
+    background-image: url('https://images.shiksha.com/mediadata/images/1539752549phpJePe6G.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: right;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 2em 2.5em 8em 5em;
+}
+
+.sign-in>.left {
+    position: relative;
+    grid-template-columns: 24rem;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    place-content: center;
+}
+
+.sign-in>.left>.logo {
+    color: black;
+    top: 1.5em;
+    left: 2em;
+    gap: .75em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+}
+.logo > svg {
+    width: 5rem;
+    height: 5rem;
+}
+
+.logo > h1{
+    font-size: 2.2rem;
+    font-weight: 900;
+}
+
+.left>.center {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+}
+
+.center>.welcome-text {
+    font-size: 2.5rem;
+
+}
+
+.center>.welcome-text>h1 {
+    font-family: aura;
+}
+
+.center>form {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    font-weight: 600;
+}
+
+.email,
+.password,
+.DOB,
+.captcha {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    position: relative;
+}
+
+.sign-in-email,
+.sign-in-password,
+.sign-in-DOB,
+.sign-in-captcha{
+    padding: 1em;
+    border: 0.1px solid rgba(0, 0, 0, 0.4);
+    outline: none;
+    border-radius: 5px;
+    color: black !important;
+    background-color: rgba(255, 255, 255, 0.6);
+}
+.password>.password-eye {
+    position: absolute;
+    right: 1em;
+    top: 1.5em;
+    font-size: 1.55rem;
+    display: none;
+    cursor: pointer;
+}
+
+::placeholder {
+    padding-left: 0.15em;
+    opacity: 0.8;
+    color: rgba(0, 0, 0, 1) !important;
+}
+
+.remember-forget-DOB {
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-inline: 0.5em;
+}
+
+.remember-me {
+    display: flex;
+    gap: 0.25em;
+}
+
+.login-btn {
+    
+    background-color: var(--primary-color);
+}
+
+
+/* Loader */
+.loader{
+    width: 100%;
+    height: 100%;
+    display: grid;
+    place-items: center;
+    background-color: white;
+}
+
+.load{
+    width: 3em;
+    height: 3em;
+}

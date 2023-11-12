@@ -9,6 +9,7 @@ import TeacherDashboard from './pages/TeacherDashboard/TeacherDashboard'
 import StudentDashboard from './pages/StudentDashboard/StudentDashboard'
 import { StudentProtectedRoute, TeacherProtectedRoute } from './contexts/ProtectedRoute'
 import { Toaster } from 'react-hot-toast'
+import './components/Components.css/components.css'
 import './index.css'
 const App = () => {
   
