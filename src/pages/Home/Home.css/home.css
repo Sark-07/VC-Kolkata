@@ -11,6 +11,7 @@
     width: 100%;
     padding-inline: 4em;
     display: grid;
+    place-content: center;
     grid-template-columns: 32em 55rem;
     grid-auto-rows: 58vh;
     gap: var(--gap-lg);

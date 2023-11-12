@@ -22,7 +22,6 @@ const StudentUniversityQuestionFetch = () => {
             <td>Quantum mechanics</td>
             <td>
               <Link to='https://www.eshikshak.behalacollege.in/uploads/university_question/20200424043106197342.pdf'
-                class='btn btn-info btn-xs'
                 target='_blank'>Click</Link>
             </td>
           </tr>

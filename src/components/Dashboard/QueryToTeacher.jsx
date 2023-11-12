@@ -36,7 +36,7 @@ const QueryToTeacher = () => {
 
   return (
     <div className='query-to-teacher common'>
-        <h1>Query To Teacher</h1>
+        <h1 style={{borderBottomColor: 'transparent'}}>Query To Teacher</h1>
         <div>
           <form
             className='add-new-material'
