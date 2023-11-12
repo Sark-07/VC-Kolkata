@@ -13,6 +13,7 @@ const TeachingPlanFetchForm = ({
   setDepartment,
   setSemester,
   setSession,
+  baseUrl
 }) => {
   return (
     <form
@@ -102,7 +103,7 @@ const TeachingPlanFetchForm = ({
           <option value='Yoga materials'>Yoga materials</option>
         </select>
       </div>
-      <div className='department'>
+      <div className={`${baseUrl == 'teacher-dashboard' && 'hide'} department`}>
         <label htmlFor='Department'>
           Department<sup>*</sup>
         </label>
@@ -231,9 +232,19 @@ const TeachingPlan = () => {
 
   const fetchTeachingPlan = async (e) => {
     e.preventDefault();
-    if (semester && course && session && department) {
+    if (baseUrl == 'teacher-dashboard' && semester && course && session) {
       navigate(
-        `/${baseUrl}/teaching-plan/fetch?semester=${semester}&course=${course}&session=${session}&department=${department}`
+        `/${baseUrl}/teaching-plan/fetch?semester=${semester}&course=${course}&session=${session}`
+      );
+    } else if (
+      baseUrl == 'student-dashboard' &&
+      department &&
+      semester &&
+      course &&
+      session
+    ) {
+      navigate(
+        `/${baseUrl}/teaching-plan/fetch?semester=${semester}&session=${session}&course=${course}&department=${department}`
       );
     } else {
       toast.error('Please fill up all fields.');
@@ -241,26 +252,44 @@ const TeachingPlan = () => {
   };
 
   useEffect(() => {
-    if (querySemester && queryCourse && querySession && queryDepartment) {
-      if (baseUrl == 'teacher-dashboard') {
-        fetch('http://localhost:3000/fetch')
-          .then((res) => {
-            return res.json();
-          })
-          .then((data) => {
-            console.log(data), setTeachingPlan(data);
-          });
-      } else {
-        fetch('http://localhost:3000/fetch')
-          .then((res) => {
-            return res.json();
-          })
-          .then((data) => {
-            console.log(data), setTeachingPlan(data);
-          });
-      }
+    if (baseUrl == 'teacher-dashboard' && querySemester && queryCourse && querySession) {
+      // try {
+
+      //   const payload = {
+      //     email: JSON.parse(localStorage.getItem('token')).email,
+      //     semester: querySemester,
+      //     course: queryCourse
+      //   }
+      //     //  const {data} = axios.post(url, payload)
+
+      // } catch (error) {
+
+      //   console.log(error);
+
+      // }
+      fetch('http://localhost:3000/fetch')
+        .then((res) => {
+          return res.json();
+        })
+        .then((data) => {
+          console.log(data), setTeachingPlan(data);
+        });
+    } else if (
+      baseUrl == 'student-dashboard' &&
+      queryDepartment &&
+      querySemester &&
+      queryCourse &&
+      querySession
+    ) {
+      fetch('http://localhost:3000/fetch1')
+        .then((res) => {
+          return res.json();
+        })
+        .then((data) => {
+          console.log(data), setTeachingPlan(data);
+        });
     }
-  }, [querySemester, queryCourse, querySession, queryDepartment]);
+  }, [querySemester, queryCourse, queryDepartment, querySession]);
 
   return (
     <>
@@ -274,6 +303,7 @@ const TeachingPlan = () => {
             setSemester={setSemester}
             setSession={setSession}
             fetchTeachingPlan={fetchTeachingPlan}
+            baseUrl={baseUrl}
           />
         ) : teachigPlan &&
           pathname == '/teacher-dashboard/teaching-plan/fetch' ? (
@@ -288,7 +318,7 @@ const TeachingPlan = () => {
             handleTeachingPlanSubmit={handleTeachingPlanSubmit}
             subUnit={subUnit}
           />
-        ) : pathname == '/student-dashboard/teaching-plan/fetch' ? (
+        ) : teachigPlan && pathname == '/student-dashboard/teaching-plan/fetch' ? (
           <StudentTeachingPlanFetch />
         ) : (
           <></>

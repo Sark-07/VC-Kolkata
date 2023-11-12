@@ -9,7 +9,8 @@ const EbookAdd = ({
   setKeyword,
   setTitle,
   handleEbookSubmit,
-  contentType
+  contentType,
+  setSubject
 }) => {
   return (
     <div>

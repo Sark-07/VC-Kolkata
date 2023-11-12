@@ -234,7 +234,7 @@ const StudyMaterial = () => {
             setTopic={setTopic}
             handleStudyMaterialSubmit={handleStudyMaterialSubmit}
           />
-        ) : pathname == '/student-dashboard/study-material/fetch' ? (
+        ) : studyMaterials && pathname == '/student-dashboard/study-material/fetch' ? (
           <StudentStudyMaterialFetch />
         ) : (
           <></>

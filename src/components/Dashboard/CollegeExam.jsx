@@ -198,9 +198,7 @@ const CollegeExam = () => {
     }
   };
 
-  console.log(baseUrl, session, semester, department, course);
   const fetchCollegeExamList = async (e) => {
-    console.log(baseUrl, session, semester, department, course);
     e.preventDefault();
     if (baseUrl == 'teacher-dashboard' && semester && course && session) {
       navigate(
@@ -285,7 +283,7 @@ const CollegeExam = () => {
             setTimeOfExam={setTimeOfExam}
             handleCollegeExamSubmit={handleCollegeExamSubmit}
           />
-        ) : pathname == '/student-dashboard/college-exam/fetch' ? (
+        ) : collegeExamList && pathname == '/student-dashboard/college-exam/fetch' ? (
           <StudentCollegeExamFetch/>
         ) : (
           <></>

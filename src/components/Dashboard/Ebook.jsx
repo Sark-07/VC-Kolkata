@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import axios from 'axios';
 import EbookAdd from './TeacherDashboardComponents/EbookAdd';
+import EBookFetch from './TeacherDashboardComponents/EBookFetch';
 const url = 'http://localhost:3000/upload';
 const Ebook = () => {
   const navigate = useNavigate();
@@ -15,6 +16,8 @@ const Ebook = () => {
   const [contentType, setContentType] = useState('');
   const [file, setFile] = useState(null);
   const pathname = window.location.pathname;
+  const baseUrl = pathname.split('/')[1];
+
   const handleEbookSubmit = async (e) => {
     e.preventDefault();
 
@@ -57,35 +60,19 @@ const Ebook = () => {
   return (
     <div className='common ebook'>
       <h1>Ebook</h1>
-      <div className={`${pathname !== '/teacher-dashboard/e-books' && 'hide'}`}>
-        <div className='add-material add-new-btn'>
-          <button onClick={() => navigate('/teacher-dashboard/e-books/add')}>
-            Add New
-          </button>
-        </div>
-        <table>
-          <thead>
-            <tr>
-              <th style={{ width: '58px' }}>Sl No</th>
-              <th>Subject</th>
-              <th>Title</th>
-              <th>Author Name</th>
-              <th>Keyword</th>
-              <th style={{ width: '112px' }}>View File</th>
-              <th style={{ width: '200px' }}>Action</th>
-            </tr>
-          </thead>
-        </table>
-      </div>
-      {pathname !== '/teacher-dashboard/e-books/add' ? (
+      {pathname == '/teacher-dashboard/e-books' || pathname == '/student-dashboard/e-books' ? (
+        <EBookFetch navigate={navigate} baseUrl={baseUrl}/>
+      ) : pathname == '/teacher-dashboard/e-books/add' ? (
         <EbookAdd
           setAuthor={setAuthor}
           setContentType={setContentType}
+          contentType={contentType}
           setEResources={setEResources}
           setFile={setFile}
           setKeyword={setKeyword}
           setLink={setLink}
           setTitle={setTitle}
+          setSubject={setSubject}
           handleEbookSubmit={handleEbookSubmit}
         />
       ) : (
