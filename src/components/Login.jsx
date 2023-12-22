@@ -41,7 +41,7 @@ const Login = ({
             </div>
             {baseUrl == 'teacher-login' ? (
               <div className='password'>
-                <label htmlFor='password'>password</label>
+                <label htmlFor='password'>Password</label>
                 <input
                   className='sign-in-password'
                   type={showPassword ? 'text' : 'password'}

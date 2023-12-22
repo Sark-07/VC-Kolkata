@@ -450,3 +450,59 @@ input[type='number'],
     border-radius: 4px;
     outline: none;
 }
+
+/* Teaching Plan Print */
+.teaching-plan-print{
+    width: 100%;
+    padding: 1em;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.teacher-subject-info{
+    margin-top: 2em;
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1em;
+    border: 0.5px solid rgba(0, 0, 0, 0.121);
+}
+.teacher-subject-info > section > div{
+    padding: 0.5em 1em;
+    /* padding-right: 0.5em; */
+    display: flex;
+    flex-direction: column;
+    gap: 0.35em;
+    
+    
+}
+
+.teacher-subject-info > section > h3{
+    text-align: center;
+    padding: 0.5em;
+    border-bottom: 0.5px solid rgba(0, 0, 0, 0.121);
+}
+.print-container{
+    width: 60rem;
+}
+
+.plan{
+    padding: 1em 0;
+    width: inherit;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75em;
+}
+.plan > table{
+    border-collapse: collapse;
+}
+.sign-print{
+    display: flex;
+    justify-content: space-between;
+}
+.sign-print > button{
+    background: var(--primary-color);
+}

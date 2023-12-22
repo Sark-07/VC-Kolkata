@@ -31,7 +31,6 @@ const TeacherLogin = () => {
   const url = 'http://localhost/vc/TeacherLogin.php';
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
       if (validateEmail(email) === false) {
         setValidEmail(true);
@@ -46,6 +45,7 @@ const TeacherLogin = () => {
           email: email,
           password: password,
         };
+    console.log(payload);
         
         const { data } = await axios.post(url, payload);
         if (data.success) {
@@ -55,10 +55,12 @@ const TeacherLogin = () => {
             navigate('/')
           }, 1000);
         }else{
+          console.log('hi');
           toast.error(data.message)
         }
       }
     } catch (error) {
+      console.log('hr');
       console.log(error);
       toast.error(error.response.data.message);
     }

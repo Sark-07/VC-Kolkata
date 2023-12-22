@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import axios from 'axios';
 import VideoLessonAdd from './TeacherDashboardComponents/VideoLessonAdd';
@@ -104,11 +104,6 @@ const VideoLesson = () => {
   const [topic, setTopic] = useState('');
   const [fileLink, setFileLink] = useState('');
   const pathname = window.location.pathname;
-  const search = useLocation().search;
-  const querySemester = new URLSearchParams(search).get('semester');
-  const queryCourse = new URLSearchParams(search).get('course');
-  const queryDepartment = new URLSearchParams(search).get('department');
-  const [video, setVideo] = useState(null);
   const baseUrl = pathname.split('/')[1];
 
   const handleVideosubmitSubmit = async (e) => {
@@ -136,48 +131,65 @@ const VideoLesson = () => {
 
   const fetchVideo = async (e) => {
     e.preventDefault();
-    if (baseUrl == 'teacher-dashboard' && semester && course) {
-      navigate(
-        `/${baseUrl}/video-lesson/fetch?semester=${semester}&course=${course}`
-      );
-    } else if (
-      baseUrl == 'student-dashboard' &&
-      semester &&
-      course &&
-      department
-    ) {
-      navigate(
-        `/${baseUrl}/video-lesson/fetch?semester=${semester}&course=${course}&department=${department}`
-      );
-    } else {
-      toast.error('Please fill up all fields.');
-    }
+      if (baseUrl == 'teacher-dashboard' && semester && course) {
+        navigate(
+          `/${baseUrl}/video-lesson/fetch?semester=${semester}&course=${course}`
+        );
+      } else if (
+        baseUrl == 'student-dashboard' &&
+        semester &&
+        course &&
+        department
+      ) {
+        navigate(
+          `/${baseUrl}/video-lesson/fetch?semester=${semester}&course=${course}&department=${department}`
+        );
+      } else {
+        toast.error('Please fill up all fields.');
+      }
   };
 
-  useEffect(() => {
-    if (baseUrl == 'teacher-dashboard' && querySemester && queryCourse) {
-      fetch('http://localhost:3000/fetch')
-        .then((res) => {
-          return res.json();
-        })
-        .then((data) => {
-          console.log(data), setVideo(data);
-        });
-    } else if (
-      baseUrl == 'student-dashboard' &&
-      querySemester &&
-      queryCourse &&
-      queryDepartment
-    ) {
-      fetch('http://localhost:3000/fetch1')
-        .then((res) => {
-          return res.json();
-        })
-        .then((data) => {
-          console.log(data), setVideo(data);
-        });
-    }
-  }, [querySemester, queryCourse, queryDepartment]);
+  // useEffect(() => {
+  //   if (baseUrl == 'teacher-dashboard' && querySemester && queryCourse) {
+  //     // try {
+  //     //   const payload = {
+  //     //     email: JSON.parse(localStorage.getItem('token')).email,
+  //     //     semester: querySemester,
+  //     //     course: queryCourse,
+  //     //   };
+
+  //     //   console.log(payload);
+  //     //   fetch('http://localhost/vc/fetch/videofetch.php', {
+  //     //     Method: 'POST',
+  //     //     Headers: {
+  //     //       'Content-Type': 'application/json',
+  //     //     },
+  //     //     Body: JSON.stringify(payload),
+  //     //   })
+  //     //     .then((res) => {
+  //     //       return res.json();
+  //     //     })
+  //     //     .then((data) => {
+  //     //       console.log(data), setVideo(data);
+  //     //     });
+  //     // } catch (error) {
+  //     //   console.log(error);
+  //     // }
+  //   } else if (
+  //     baseUrl == 'student-dashboard' &&
+  //     querySemester &&
+  //     queryCourse &&
+  //     queryDepartment
+  //   ) {
+  //     fetch('http://localhost:3000/fetch1')
+  //       .then((res) => {
+  //         return res.json();
+  //       })
+  //       .then((data) => {
+  //         console.log(data), setVideo(data);
+  //       });
+  //   }
+  // }, [querySemester, queryCourse, queryDepartment]);
 
   return (
     <>
@@ -192,7 +204,7 @@ const VideoLesson = () => {
             baseUrl={baseUrl}
             fetchVideo={fetchVideo}
           />
-        ) : video && pathname == '/teacher-dashboard/video-lesson/fetch' ? (
+        ) : pathname == '/teacher-dashboard/video-lesson/fetch' ? (
           <VideoLessonFetch navigate={navigate} />
         ) : pathname == '/teacher-dashboard/video-lesson/add' ? (
           <VideoLessonAdd
@@ -200,8 +212,8 @@ const VideoLesson = () => {
             setTopic={setTopic}
             handleVideosubmitSubmit={handleVideosubmitSubmit}
           />
-        ) : video && pathname == '/student-dashboard/video-lesson/fetch' ? (
-          <StudentVideoLessonFetch /> 
+        ) : pathname == '/student-dashboard/video-lesson/fetch' ? (
+          <StudentVideoLessonFetch />
         ) : (
           <></>
         )}

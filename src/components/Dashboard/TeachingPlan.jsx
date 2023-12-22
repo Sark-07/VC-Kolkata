@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import axios from 'axios';
 import TeachingPlanFetch from './TeacherDashboardComponents/TeachingPlanFetch';
@@ -156,12 +156,6 @@ const TeachingPlan = () => {
   const [sectionModule, setSectionModule] = useState('');
   const [subUnit, setSubUnit] = useState(1);
   const pathname = window.location.pathname;
-  const search = useLocation().search;
-  const querySemester = new URLSearchParams(search).get('semester');
-  const queryCourse = new URLSearchParams(search).get('course');
-  const querySession = new URLSearchParams(search).get('session');
-  const queryDepartment = new URLSearchParams(search).get('department');
-  const [teachigPlan, setTeachingPlan] = useState(null);
   const baseUrl = pathname.split('/')[1];
 
   let modules = [];
@@ -251,45 +245,45 @@ const TeachingPlan = () => {
     }
   };
 
-  useEffect(() => {
-    if (baseUrl == 'teacher-dashboard' && querySemester && queryCourse && querySession) {
-      // try {
+  // useEffect(() => {
+  //   if (baseUrl == 'teacher-dashboard' && querySemester && queryCourse && querySession) {
+  //     // try {
 
-      //   const payload = {
-      //     email: JSON.parse(localStorage.getItem('token')).email,
-      //     semester: querySemester,
-      //     course: queryCourse
-      //   }
-      //     //  const {data} = axios.post(url, payload)
+  //     //   const payload = {
+  //     //     email: JSON.parse(localStorage.getItem('token')).email,
+  //     //     semester: querySemester,
+  //     //     course: queryCourse
+  //     //   }
+  //     //     //  const {data} = axios.post(url, payload)
 
-      // } catch (error) {
+  //     // } catch (error) {
 
-      //   console.log(error);
+  //     //   console.log(error);
 
-      // }
-      fetch('http://localhost:3000/fetch')
-        .then((res) => {
-          return res.json();
-        })
-        .then((data) => {
-          console.log(data), setTeachingPlan(data);
-        });
-    } else if (
-      baseUrl == 'student-dashboard' &&
-      queryDepartment &&
-      querySemester &&
-      queryCourse &&
-      querySession
-    ) {
-      fetch('http://localhost:3000/fetch1')
-        .then((res) => {
-          return res.json();
-        })
-        .then((data) => {
-          console.log(data), setTeachingPlan(data);
-        });
-    }
-  }, [querySemester, queryCourse, queryDepartment, querySession]);
+  //     // }
+  //     fetch('http://localhost:3000/fetch')
+  //       .then((res) => {
+  //         return res.json();
+  //       })
+  //       .then((data) => {
+  //         console.log(data), setTeachingPlan(data);
+  //       });
+  //   } else if (
+  //     baseUrl == 'student-dashboard' &&
+  //     queryDepartment &&
+  //     querySemester &&
+  //     queryCourse &&
+  //     querySession
+  //   ) {
+  //     fetch('http://localhost:3000/fetch1')
+  //       .then((res) => {
+  //         return res.json();
+  //       })
+  //       .then((data) => {
+  //         console.log(data), setTeachingPlan(data);
+  //       });
+  //   }
+  // }, [querySemester, queryCourse, queryDepartment, querySession]);
 
   return (
     <>
@@ -305,8 +299,7 @@ const TeachingPlan = () => {
             fetchTeachingPlan={fetchTeachingPlan}
             baseUrl={baseUrl}
           />
-        ) : teachigPlan &&
-          pathname == '/teacher-dashboard/teaching-plan/fetch' ? (
+        ) : pathname == '/teacher-dashboard/teaching-plan/fetch' ? (
           <TeachingPlanFetch navigate={navigate} />
         ) : pathname == '/teacher-dashboard/teaching-plan/add' ? (
           <TeachingPlanAdd
@@ -318,7 +311,7 @@ const TeachingPlan = () => {
             handleTeachingPlanSubmit={handleTeachingPlanSubmit}
             subUnit={subUnit}
           />
-        ) : teachigPlan && pathname == '/student-dashboard/teaching-plan/fetch' ? (
+        ) : pathname == '/student-dashboard/teaching-plan/fetch' ? (
           <StudentTeachingPlanFetch />
         ) : (
           <></>

@@ -11,6 +11,7 @@ import { StudentProtectedRoute, TeacherProtectedRoute } from './contexts/Protect
 import { Toaster } from 'react-hot-toast'
 import './components/Components.css/components.css'
 import './index.css'
+import TeachingPlanPrint from './components/Dashboard/TeachingPlanPrint'
 const App = () => {
   
   return (
@@ -29,6 +30,7 @@ const App = () => {
       <Route path='/teacher-dashboard/teaching-plan' element={<TeacherProtectedRoute><TeacherDashboard index={3}/></TeacherProtectedRoute>} />
       <Route path='/teacher-dashboard/teaching-plan/fetch' element={<TeacherProtectedRoute><TeacherDashboard index={3}/></TeacherProtectedRoute>} />
       <Route path='/teacher-dashboard/teaching-plan/add' element={<TeacherProtectedRoute><TeacherDashboard index={3}/></TeacherProtectedRoute>} />
+      <Route path='/teacher-dashboard/teaching-plan/print' element={<TeacherProtectedRoute><TeachingPlanPrint/></TeacherProtectedRoute>} />
       <Route path='/teacher-dashboard/notification' element={<TeacherProtectedRoute><TeacherDashboard index={4}/></TeacherProtectedRoute>} />
       <Route path='/teacher-dashboard/notification/fetch' element={<TeacherProtectedRoute><TeacherDashboard index={4}/></TeacherProtectedRoute>} />
       <Route path='/teacher-dashboard/notification/add' element={<TeacherProtectedRoute><TeacherDashboard index={4}/></TeacherProtectedRoute>} />
