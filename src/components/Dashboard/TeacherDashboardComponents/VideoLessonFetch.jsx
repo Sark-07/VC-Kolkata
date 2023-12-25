@@ -31,7 +31,7 @@ const VideoLessonFetch = ({ navigate }) => {
     if (!video) {
       fetchData();
     }
-  }, []);
+  }, [video]);
 
   return (
     <div>
@@ -58,7 +58,7 @@ const VideoLessonFetch = ({ navigate }) => {
                   <td>{items.topic}</td>
                   <td><Link to={items.link}>Click</Link></td>
                   <td className='actions'>
-                    <button>Edit</button>
+                    <button style={{marginRight: '0.5em'}}>Edit</button>
                     <button>Delete</button>
                   </td>
                 </tr>

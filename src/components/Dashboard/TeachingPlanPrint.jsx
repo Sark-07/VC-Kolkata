@@ -3,10 +3,10 @@ import { PrintContext } from '../../contexts/PrintContext';
 import { useReactToPrint } from 'react-to-print';
 
 const TeachingPlanPrint = () => {
-    const {printData} = useContext(PrintContext)
-    console.log(printData);
+  const { printData } = useContext(PrintContext);
+  console.log(printData);
 
-    const componentRef = useRef();
+  const componentRef = useRef();
 
   const printPlan = useReactToPrint({
     content: () => componentRef.current,
@@ -16,31 +16,33 @@ const TeachingPlanPrint = () => {
     <>
       <section ref={componentRef} className='teaching-plan-print'>
         <header>
-          <h1 style={{fontSize: '3rem'}}>Vivekananda College</h1>
-          <h2 style={{fontSize: '2rem', textAlign: 'center'}}>Teaching Plan Report</h2>
+          <h1 style={{ fontSize: '3rem' }}>Vivekananda College</h1>
+          <h2 style={{ fontSize: '2rem', textAlign: 'center' }}>
+            Teaching Plan Report
+          </h2>
         </header>
 
         <main className='print-container'>
-          <div className="teacher-subject-info">
-          <section>
-            <h3>Teacher Information</h3>
-            <div>
-            <p>Teacher Name: {printData.teacherName}</p>
-            <p>Department: {printData.department}</p>
-            <p>Session: {printData.session}</p>
-            </div>
-          </section>
+          <div className='teacher-subject-info'>
+            <section>
+              <h3>Teacher Information</h3>
+              <div>
+                <p>Teacher Name: {printData.teacherName}</p>
+                <p>Department: {printData.department}</p>
+                <p>Session: {printData.session}</p>
+              </div>
+            </section>
 
-          <section>
-            <h3>Subject Information</h3>
-            <div>
-            <p>Subject Name: Computer Science</p>
-            <p>Semester: Sem {printData.semester}</p>
-            <p>Paper: {printData.paper}</p>
-            <p>Section: {printData.section}</p>
-            <p>Unit Name (Topic): {printData.topic}</p>
-            </div>
-          </section>
+            <section>
+              <h3>Subject Information</h3>
+              <div>
+                <p>Subject Name: Computer Science</p>
+                <p>Semester: Sem {printData.semester}</p>
+                <p>Paper: {printData.paper}</p>
+                <p>Section: {printData.sectionModule}</p>
+                <p>Unit Name (Topic): {printData.topic}</p>
+              </div>
+            </section>
           </div>
 
           <section className='plan'>
@@ -54,11 +56,17 @@ const TeachingPlanPrint = () => {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>Introduction</td>
-                  <td>September</td>
-                  <td>4</td>
-                </tr>
+                {printData &&
+                  printData.subModules &&
+                  printData.subModules.map((items, index) => {
+                    return (
+                      <tr key={index}>
+                        <td>{items.subUnitName}</td>
+                        <td>{items.month}</td>
+                        <td>{items.noOfClasses}</td>
+                      </tr>
+                    );
+                  })}
               </tbody>
             </table>
           </section>

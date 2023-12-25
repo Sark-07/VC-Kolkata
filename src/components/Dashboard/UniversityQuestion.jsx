@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import axios from 'axios';
 import UniversityQuestionAdd from './TeacherDashboardComponents/UniversityQuestionAdd';
@@ -154,12 +154,6 @@ const UniversityQuestion = () => {
   const [paper, setPaper] = useState('');
   const [file, setFile] = useState(null);
   const pathname = window.location.pathname;
-  const search = useLocation().search;
-  const querySemester = new URLSearchParams(search).get('semester');
-  const queryCourse = new URLSearchParams(search).get('course');
-  const querySession = new URLSearchParams(search).get('session');
-  const queryDepartment = new URLSearchParams(search).get('department');
-  const [univQuestion, setUnivQuestion] = useState(null);
   const baseUrl = pathname.split('/')[1];
 
   const handleUnivQuestionSubmit = async (e) => {
@@ -205,44 +199,44 @@ const UniversityQuestion = () => {
     }
   };
 
-  useEffect(() => {
-    if (baseUrl == 'teacher-dashboard' && querySemester && queryCourse && querySession && queryDepartment) {
-      // try {
+  // useEffect(() => {
+  //   if (baseUrl == 'teacher-dashboard' && querySemester && queryCourse && querySession && queryDepartment) {
+  //     // try {
 
-      //   const payload = {
-      //     email: JSON.parse(localStorage.getItem('token')).email,
-      //     semester: querySemester,
-      //     course: queryCourse
-      //   }
-      //     //  const {data} = axios.post(url, payload)
+  //     //   const payload = {
+  //     //     email: JSON.parse(localStorage.getItem('token')).email,
+  //     //     semester: querySemester,
+  //     //     course: queryCourse
+  //     //   }
+  //     //     //  const {data} = axios.post(url, payload)
 
-      // } catch (error) {
+  //     // } catch (error) {
 
-      //   console.log(error);
+  //     //   console.log(error);
 
-      // }
-      fetch('http://localhost:3000/fetch')
-        .then((res) => {
-          return res.json();
-        })
-        .then((data) => {
-          console.log(data), setUnivQuestion(data);
-        });
-    } else if (
-      baseUrl == 'student-dashboard' &&
-      queryDepartment &&
-      querySemester &&
-      queryCourse
-    ) {
-      fetch('http://localhost:3000/fetch1')
-        .then((res) => {
-          return res.json();
-        })
-        .then((data) => {
-          console.log(data), setUnivQuestion(data);
-        });
-    }
-  }, [querySemester, queryCourse, queryDepartment, querySession]);
+  //     // }
+  //     fetch('http://localhost:3000/fetch')
+  //       .then((res) => {
+  //         return res.json();
+  //       })
+  //       .then((data) => {
+  //         console.log(data), setUnivQuestion(data);
+  //       });
+  //   } else if (
+  //     baseUrl == 'student-dashboard' &&
+  //     queryDepartment &&
+  //     querySemester &&
+  //     queryCourse
+  //   ) {
+  //     fetch('http://localhost:3000/fetch1')
+  //       .then((res) => {
+  //         return res.json();
+  //       })
+  //       .then((data) => {
+  //         console.log(data), setUnivQuestion(data);
+  //       });
+  //   }
+  // }, [querySemester, queryCourse, queryDepartment, querySession]);
   return (
     <>
       <div className='university-question common'>
@@ -257,8 +251,7 @@ const UniversityQuestion = () => {
             setSession={setSession}
             baseUrl={baseUrl}
           />
-        ) : univQuestion &&
-          pathname == '/teacher-dashboard/university-question/fetch' ? (
+        ) : pathname == '/teacher-dashboard/university-question/fetch' ? (
           <UniversityQuestionFetch navigate={navigate} />
         ) : pathname == '/teacher-dashboard/university-question/add' ? (
           <UniversityQuestionAdd
@@ -266,8 +259,7 @@ const UniversityQuestion = () => {
             setPaper={setPaper}
             handleUnivQuestionSubmit={handleUnivQuestionSubmit}
           />
-        ) : univQuestion &&
-        pathname == '/student-dashboard/university-question/fetch' ? (
+        ) : pathname == '/student-dashboard/university-question/fetch' ? (
           <StudentUniversityQuestionFetch />
         ) : (
           <></>

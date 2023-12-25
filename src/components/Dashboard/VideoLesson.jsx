@@ -5,7 +5,7 @@ import axios from 'axios';
 import VideoLessonAdd from './TeacherDashboardComponents/VideoLessonAdd';
 import VideoLessonFetch from './TeacherDashboardComponents/VideoLessonFetch';
 import StudentVideoLessonFetch from './StudentDashboardComponents/StudentVideoLessonFetch';
-const url = 'http://localhost:3000/upload';
+const url = 'http://localhost/vc/uploads/video.php';
 
 const VideoLessonFetchForm = ({
   baseUrl,
@@ -112,13 +112,14 @@ const VideoLesson = () => {
     try {
       if (semester && course && topic && fileLink) {
         const payload = {
+          email: JSON.parse(localStorage.getItem('token')).email,
           semester: semester,
           course: course,
           topic: topic,
-          fileLink: fileLink,
+          link: fileLink,
           date: new Date().toLocaleDateString('de-DE'),
         };
-
+        // console.log(payload);
         const { data } = await axios.post(url, payload);
         toast.success(data.message);
       } else {

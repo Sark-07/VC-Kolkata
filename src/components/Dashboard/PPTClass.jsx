@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import axios from 'axios';
 import PPTClassAdd from './TeacherDashboardComponents/PPTClassAdd';
 import PPTClassFetch from './TeacherDashboardComponents/PPTClassFetch';
 import StudentPPTClassFetch from './StudentDashboardComponents/StudentPPTClassFetch';
-const url = 'http://localhost:3000/upload';
+const url = 'http://localhost/vc/uploads/ppt.php';
 
 const PPTClassFetchFrom = ({
   fetchPPT,
@@ -151,13 +151,6 @@ const PPTClass = () => {
   const [topic, setTopic] = useState('');
   const [file, setFile] = useState(null);
   const pathname = window.location.pathname;
-  const search = useLocation().search;
-  const querySemester = new URLSearchParams(search).get('semester');
-  const queryCourse = new URLSearchParams(search).get('course');
-  const querySession = new URLSearchParams(search).get('session');
-  const queryDepartment = new URLSearchParams(search).get('department');
-
-  const [ppt, setPPt] = useState(null);
   const baseUrl = pathname.split('/')[1];
 
   const handlePPTSubmit = async (e) => {
@@ -165,20 +158,24 @@ const PPTClass = () => {
 
     try {
       if (semester && course && session && topic && file) {
-        const formData = new FormData();
-        formData.append('file', file);
-        formData.append('semester', semester);
-        formData.append('session', session);
-        formData.append('course', course);
-        formData.append('topic', topic);
-        formData.append('date', new Date().toLocaleDateString('de-DE'));
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = async (event) => {
+          const base64EncodedFile = event.target.result;
 
-        const { data } = await axios.post(url, formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-        });
-        toast.success(data.message);
+          const payload = {
+            email: JSON.parse(localStorage.getItem('token')).email,
+            semester,
+            course,
+            session,
+            topic,
+            ppt: base64EncodedFile,
+            date: new Date().toLocaleDateString('de-DE'),
+          };
+          console.log(payload);
+          const { data } = await axios.post(url, payload);
+          toast.success(data.message);
+        }
       } else {
         toast.error('Please fill up all fields.');
       }
@@ -208,50 +205,50 @@ const PPTClass = () => {
     }
   };
 
-  useEffect(() => {
-    if (
-      baseUrl == 'teacher-dashboard' &&
-      querySemester &&
-      queryCourse &&
-      querySession
-    ) {
-      // try {
+  // useEffect(() => {
+  //   if (
+  //     baseUrl == 'teacher-dashboard' &&
+  //     querySemester &&
+  //     queryCourse &&
+  //     querySession
+  //   ) {
+  //     // try {
 
-      //   const payload = {
-      //     email: JSON.parse(localStorage.getItem('token')).email,
-      //     semester: querySemester,
-      //     course: queryCourse
-      //   }
-      //     //  const {data} = axios.post(url, payload)
+  //     //   const payload = {
+  //     //     email: JSON.parse(localStorage.getItem('token')).email,
+  //     //     semester: querySemester,
+  //     //     course: queryCourse
+  //     //   }
+  //     //     //  const {data} = axios.post(url, payload)
 
-      // } catch (error) {
+  //     // } catch (error) {
 
-      //   console.log(error);
+  //     //   console.log(error);
 
-      // }
-      fetch('http://localhost:3000/fetch')
-        .then((res) => {
-          return res.json();
-        })
-        .then((data) => {
-          console.log(data), setPPt(data);
-        });
-    } else if (
-      baseUrl == 'student-dashboard' &&
-      queryDepartment &&
-      querySemester &&
-      queryCourse &&
-      querySession
-    ) {
-      fetch('http://localhost:3000/fetch1')
-        .then((res) => {
-          return res.json();
-        })
-        .then((data) => {
-          console.log(data), setPPt(data);
-        });
-    }
-  }, [querySemester, queryCourse, queryDepartment, querySession]);
+  //     // }
+  //     fetch('http://localhost:3000/fetch')
+  //       .then((res) => {
+  //         return res.json();
+  //       })
+  //       .then((data) => {
+  //         console.log(data), setPPt(data);
+  //       });
+  //   } else if (
+  //     baseUrl == 'student-dashboard' &&
+  //     queryDepartment &&
+  //     querySemester &&
+  //     queryCourse &&
+  //     querySession
+  //   ) {
+  //     fetch('http://localhost:3000/fetch1')
+  //       .then((res) => {
+  //         return res.json();
+  //       })
+  //       .then((data) => {
+  //         console.log(data), setPPt(data);
+  //       });
+  //   }
+  // }, [querySemester, queryCourse, queryDepartment, querySession]);
   return (
     <>
       <div className='PPT-class common'>
@@ -266,7 +263,7 @@ const PPTClass = () => {
             baseUrl={baseUrl}
             fetchPPT={fetchPPT}
           />
-        ) : ppt && pathname == '/teacher-dashboard/ppt-class/fetch' ? (
+        ) : pathname == '/teacher-dashboard/ppt-class/fetch' ? (
           <PPTClassFetch navigate={navigate} />
         ) : pathname == '/teacher-dashboard/ppt-class/add' ? (
           <PPTClassAdd
@@ -274,7 +271,7 @@ const PPTClass = () => {
             setTopic={setTopic}
             handlePPTSubmit={handlePPTSubmit}
           />
-        ) : ppt && pathname == '/student-dashboard/ppt-class/fetch' ? (
+        ) : pathname == '/student-dashboard/ppt-class/fetch' ? (
           <StudentPPTClassFetch />
         ) : (
           <></>

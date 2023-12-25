@@ -5,7 +5,7 @@ import axios from 'axios';
 import TeachingPlanFetch from './TeacherDashboardComponents/TeachingPlanFetch';
 import TeachingPlanAdd from './TeacherDashboardComponents/TeachingPlanAdd';
 import StudentTeachingPlanFetch from './StudentDashboardComponents/StudentTeachingPlanFetch';
-const url = 'http://localhost:3000/upload';
+const url = 'http://localhost/vc/uploads/plan.php';
 
 const TeachingPlanFetchForm = ({
   fetchTeachingPlan,
@@ -13,7 +13,7 @@ const TeachingPlanFetchForm = ({
   setDepartment,
   setSemester,
   setSession,
-  baseUrl
+  baseUrl,
 }) => {
   return (
     <form
@@ -103,7 +103,7 @@ const TeachingPlanFetchForm = ({
           <option value='Yoga materials'>Yoga materials</option>
         </select>
       </div>
-      <div className={`${baseUrl == 'teacher-dashboard' && 'hide'} department`}>
+      <div className={`department`}>
         <label htmlFor='Department'>
           Department<sup>*</sup>
         </label>
@@ -169,12 +169,13 @@ const TeachingPlan = () => {
     e.preventDefault();
 
     try {
+      console.log(semester, course, session, topic, paper, sectionModule);
       if (
         semester &&
         course &&
         session &&
-        department &&
         topic &&
+        department &&
         paper &&
         sectionModule
       ) {
@@ -204,6 +205,7 @@ const TeachingPlan = () => {
         }
 
         const payload = {
+          date: new Date().toLocaleDateString('de-DE'),
           email: JSON.parse(localStorage.getItem('token')).email,
           semester: semester,
           course: course,
@@ -214,8 +216,13 @@ const TeachingPlan = () => {
           sectionModule: sectionModule,
           modulesData: modulesData,
         };
+        console.log(payload);
         const { data } = await axios.post(url, payload);
-        toast.success(data.message);
+        if (data.success) {
+          toast.success(data.message);
+        } else if (!data.success) {
+          toast.error(data.message);
+        }
       } else {
         toast.error('Please fill up all fields.');
       }
@@ -289,8 +296,8 @@ const TeachingPlan = () => {
     <>
       <div className='teaching-plan common'>
         <h1>Teaching Plan</h1>
-        {(pathname == '/teacher-dashboard/teaching-plan' ||
-        pathname == '/student-dashboard/teaching-plan') ? (
+        {pathname == '/teacher-dashboard/teaching-plan' ||
+        pathname == '/student-dashboard/teaching-plan' ? (
           <TeachingPlanFetchForm
             setCourse={setCourse}
             setDepartment={setDepartment}

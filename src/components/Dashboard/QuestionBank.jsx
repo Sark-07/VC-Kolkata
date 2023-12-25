@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import axios from 'axios';
 import QuestionBankAdd from './TeacherDashboardComponents/QuestionBankAdd';
 import QuestionBankFetch from './TeacherDashboardComponents/QuestionBankFetch';
 import StudentQuestionBankFetch from './StudentDashboardComponents/StudentQuestionBankFetch';
-const url = 'http://localhost:3000/upload';
+const url = 'http://localhost/vc/uploads/question.php';
 
 const QuestionBankFetchForm = ({
   fetchQuestionBank,
@@ -37,7 +37,7 @@ const QuestionBankFetchForm = ({
           <option value='6'>6th Sem</option>
         </select>
       </div>
-      <div className={`${baseUrl == 'teacher-dashboard' && 'hide'} department`}>
+      <div className={`department`}>
         <label htmlFor='Department'>
           Department<sup>*</sup>
         </label>
@@ -105,32 +105,36 @@ const QuestionBank = () => {
   const [topic, setTopic] = useState('');
   const [file, setFile] = useState(null);
   const pathname = window.location.pathname;
-  const search = useLocation().search;
-  const querySemester = new URLSearchParams(search).get('semester');
-  const queryCourse = new URLSearchParams(search).get('course');
-  const queryDepartment = new URLSearchParams(search).get('department');
-  const [questionBank, setQuestionBank] = useState(null);
   const baseUrl = pathname.split('/')[1];
 
   const handleQuestionBankSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      if (semester && course && paper && topic && file) {
-        const formData = new FormData();
-        formData.append('file', file);
-        formData.append('semester', semester);
-        formData.append('course', course);
-        formData.append('paper', paper);
-        formData.append('topic', topic);
-        formData.append('date', new Date().toLocaleDateString('de-DE'));
+      if (semester && course && paper && department && topic && file) {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = async (event) => {
+          const base64EncodedFile = event.target.result;
 
-        const { data } = await axios.post(url, formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-        });
-        toast.success(data.message);
+          const payload = {
+            email: JSON.parse(localStorage.getItem('token')).email,
+            semester,
+            course,
+            paper,
+            department,
+            topic,
+            question: base64EncodedFile,
+            date: new Date().toLocaleDateString('de-DE'),
+          };
+          console.log(payload);
+          const { data } = await axios.post(url, payload);
+          if (data.success) {
+            toast.success(data.message);
+          } else if (!data.success) {
+            toast.error(data.message);
+          }
+        };
       } else {
         toast.error('Please fill up all fields.');
       }
@@ -143,7 +147,7 @@ const QuestionBank = () => {
     e.preventDefault();
     if (baseUrl == 'teacher-dashboard' && semester && course) {
       navigate(
-        `/teacher-dashboard/question-bank/fetch?semester=${semester}&course=${course}`
+        `/teacher-dashboard/question-bank/fetch?semester=${semester}&course=${course}&department=${department}`
       );
     } else if (
       baseUrl == 'student-dashboard' &&
@@ -159,44 +163,44 @@ const QuestionBank = () => {
     }
   };
 
-  useEffect(() => {
-    if (baseUrl == 'teacher-dashboard' && querySemester && queryCourse) {
-      // try {
+  // useEffect(() => {
+  //   if (baseUrl == 'teacher-dashboard' && querySemester && queryCourse) {
+  //     // try {
 
-      //   const payload = {
-      //     email: JSON.parse(localStorage.getItem('token')).email,
-      //     semester: querySemester,
-      //     course: queryCourse
-      //   }
-      //     //  const {data} = axios.post(url, payload)
+  //     //   const payload = {
+  //     //     email: JSON.parse(localStorage.getItem('token')).email,
+  //     //     semester: querySemester,
+  //     //     course: queryCourse
+  //     //   }
+  //     //     //  const {data} = axios.post(url, payload)
 
-      // } catch (error) {
+  //     // } catch (error) {
 
-      //   console.log(error);
+  //     //   console.log(error);
 
-      // }
-      fetch('http://localhost:3000/fetch')
-        .then((res) => {
-          return res.json();
-        })
-        .then((data) => {
-          console.log(data), setQuestionBank(data);
-        });
-    } else if (
-      baseUrl == 'student-dashboard' &&
-      queryDepartment &&
-      querySemester &&
-      queryCourse
-    ) {
-      fetch('http://localhost:3000/fetch1')
-        .then((res) => {
-          return res.json();
-        })
-        .then((data) => {
-          console.log(data), setQuestionBank(data);
-        });
-    }
-  }, [querySemester, queryCourse, queryDepartment]);
+  //     // }
+  //     fetch('http://localhost:3000/fetch')
+  //       .then((res) => {
+  //         return res.json();
+  //       })
+  //       .then((data) => {
+  //         console.log(data), setQuestionBank(data);
+  //       });
+  //   } else if (
+  //     baseUrl == 'student-dashboard' &&
+  //     queryDepartment &&
+  //     querySemester &&
+  //     queryCourse
+  //   ) {
+  //     fetch('http://localhost:3000/fetch1')
+  //       .then((res) => {
+  //         return res.json();
+  //       })
+  //       .then((data) => {
+  //         console.log(data), setQuestionBank(data);
+  //       });
+  //   }
+  // }, [querySemester, queryCourse, queryDepartment]);
 
   return (
     <>
@@ -211,8 +215,7 @@ const QuestionBank = () => {
             fetchQuestionBank={fetchQuestionBank}
             baseUrl={baseUrl}
           />
-        ) : questionBank &&
-          pathname == '/teacher-dashboard/question-bank/fetch' ? (
+        ) : pathname == '/teacher-dashboard/question-bank/fetch' ? (
           <QuestionBankFetch navigate={navigate} />
         ) : pathname == '/teacher-dashboard/question-bank/add' ? (
           <QuestionBankAdd

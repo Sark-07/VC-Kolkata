@@ -30,12 +30,12 @@ const TeachingPlanFetch = ({ navigate }) => {
     if (!teachigPlan) {
       fetchData();
     }
-  }, []);
+  }, [teachigPlan]);
   console.log(teachigPlan);
 
-  const handlePrint = () => {
+  const handlePrint = (index) => {
   navigate('/teacher-dashboard/teaching-plan/print')
-  setPrintData(teachigPlan[0])
+  setPrintData(teachigPlan[index])
 };
   return (
     <div>
@@ -65,10 +65,10 @@ const TeachingPlanFetch = ({ navigate }) => {
                 <tr key={items.id}>
                   <td>{index + 1}</td>
                   <td>{items.paper}</td>
-                  <td>{items.section}</td>
-                  <td>{items.unit}</td>
+                  <td>{items.sectionModule}</td>
+                  <td>{items.topic}</td>
                   <td>
-                    <button onClick={handlePrint}>View</button>
+                    <button onClick={() => handlePrint(index)}>View</button>
                   </td>
                   <td className='actions'>
                     <button style={{ marginInline: '0.5em' }}>Edit</button>
